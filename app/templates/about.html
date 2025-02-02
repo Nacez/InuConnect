@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}About Us{% endblock %}
+{% block style%}<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">{% endblock %}
+
+{% block content %}
+
+<div class="uptop">
+    <h1>About I&U Connect</h1>
+</div>
+<div class="overall">
+    <div class="aboutsection">
+        <div class="writing">
+            <h3>About Us</h3>
+            <p>I&U Connect is a 100% Aboriginal-owned business dedicated to creating real opportunities for university students across various industries. Our mission is to connect industry and university students through pre-professional, paid, multi-year internships, providing meaningful employment experiences throughout Australia.<br><br>
+                Students undertake their internships with partnering organizations, with the goal of transitioning from interns to full-time employees upon completing their university degrees. This approach offers a wide range of opportunities and accelerates careers in their chosen fields.<br><br>
+                We believe in success and opportunity for all university students. We also believe that every student should have the freedom to choose and be represented across all levels, occupations, industries, and workplaces.
+            </p>
+        </div>
+        <div class="logoimage">
+            <img src="{{ url_for('static', filename='images/inu_logo_short.png') }}">
+        </div>
+
+    </div>
+    <div>
+        <div class="becomepart">
+            <h3>Become a partner</h3>
+            <p class="lead">Join our network.</p>
+            <p>We are committed to nurturing a new generation of professionals who will bring transformative change to both corporate Australia and the wider Australian society. By supporting university students and connecting them with employers for paid, multi-year internships, our goal is to foster long-lasting employment opportunities with our partnering organizations, aiming to transition from interns to partner organisation graduate programs. <br><br>
+                Our connector platform will ensure that all students partnered with I&U Connect are well-positioned for success in their new professional careers and within their communities.<br><br>
+                If your organization can make this commitment, please register your interest!
+            </p>
+            <button onclick="location.href='/business_contact'">Contact Us Here</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

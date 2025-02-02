@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}404 Page Not Found Mate{% endblock %}
+{% block style%}<link rel="stylesheet" href="{{ url_for('static', filename='css/passwordreset.css') }}">{% endblock %}
+
+{% block content %}
+{% if complete %}
+<div class="complete"><p>Password has been changed. Click <a href="/student_login">here</a> to login if your a student!</p></div>
+
+{% endif %}
+<div class="overall">
+    <h2>Sorry this page could not be found!</h2>
+    <div class="memeholder">    <img id="meme" src="{{ url_for('static', filename='images/sidedog.png') }}" alt=""></div>
+</div>
+{% endblock %}

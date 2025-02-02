@@ -1,0 +1,408 @@
+.Headeritem{
+    list-style: none;
+    display: flex;
+    background-color: rgb(41, 46, 70);
+    color: white;
+    align-items: center;
+    text-align: center;
+}
+.Headeritem .inneritem{
+    width: 100%;
+    text-align: center;
+}
+.listitem .pfp1{
+    width: 60px;
+}
+.Headeritem .pfp1{
+    width: 60px;
+    height: 60px;
+    padding-right: 60px;
+}
+.Headeritem div{
+    width: 100%;
+}
+.pfp1 img{
+    width:60px;
+    height: 60px;
+    object-fit: cover; /* Ensures the image is clipped rather than squished */
+    overflow: hidden; /* Hides any overflowing parts of the image */
+    display: block;
+}
+
+.listitem{
+    list-style: none;
+    display: flex;
+    border-bottom: 1px solid grey;
+    transition: all ease 0.3s;
+    background-color: white;
+    align-items: center;
+}
+.listitem:hover{
+    background-color: rgb(202, 202, 202);
+    transform: scale(1.02); /* Scales the element by 5% */
+    cursor: pointer;
+}
+
+.listitem .inneritem{
+    width: 100%;
+ 
+    text-align: center;
+}
+
+.search_list{
+    width: 60%;
+    margin: auto;
+    margin-top: 20px;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Headeritem .pfp1{
+    width: 60px;
+    height: 60px;
+    padding-right: 60px;
+}
+
+.filter_bar{
+    width: 60%;
+    margin: auto;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(41, 46, 70);
+    color: white;
+
+
+}
+.Uni_bar{
+    width: 35%;
+    padding: 15px;
+}
+.Course_bar{
+    width: 60%;
+    padding: 15px;
+}
+.Year_bar{
+    width: 15%;
+    padding: 15px;
+}
+.Industry_bar{
+    width: 40%;
+    padding: 15px;
+}
+.Indigenous_bar{
+    width: 30%;
+    padding: 15px; 
+}
+.bar{
+    width: 100%;
+    padding: 20px;
+    border-bottom: 2px solid;
+    background-color: rgb(41, 46, 70);
+    display: flex;
+}
+.bar img{
+    width: 20%;
+}
+
+.name{
+    width: fit-content;
+    display: flex;
+    justify-items: right;
+    align-items: center; 
+
+    margin-left: auto;
+}
+.name a{
+    color: white;
+    margin-right: 30px;
+    font-size: 20px;
+    height: fit-content;
+
+}
+.bodyholder{
+    background-image: url("../images/dashboard.png");
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    padding-top: 40px;
+}
+
+
+.studentprofile img {
+    width: 80%; /* Ensure the image takes full width of the container */
+/* Optional: limit image width */
+    max-height: 250px;
+    object-fit: cover; /* Ensures the image is clipped rather than squished */
+    overflow: hidden; /* Hides any overflowing parts of the image */
+    display: block;
+}
+
+.upper {
+    display: flex;
+    flex-wrap: wrap; /* Makes it responsive */
+    margin-bottom: 20px;
+    height: 300px;
+}
+
+.lower {
+    display: flex;
+    flex-wrap: wrap; /* Makes it responsive */
+    margin-bottom: 20px;
+
+}
+
+.left {
+    width: 45%;
+    padding: 10px;
+    text-align: left; /* Center the profile picture */
+}
+.left1 {
+    width: 45%;
+    padding: 10px;
+    text-align: left; /* Center the profile picture */
+}
+
+.right {
+    width: 55%;
+    padding: 10px;
+}
+
+.right table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse borders for cleaner look */
+
+}
+
+.right td {
+    padding: 5px;
+
+}
+
+.right tr {
+    margin-bottom: 20px; /* Space between rows */
+}
+#popupback {
+    background-color: rgba(0, 0, 0, 0.5); /* Darker background for overlay */
+    height: 100vh; /* Make the overlay cover the entire viewport height */
+    position: fixed; /* Fixes the position to the screen */
+    top: 0; /* Aligns to the top of the screen */
+    left: 0; /* Aligns to the left of the screen */
+    width: 100%; /* Ensures the overlay covers the full width of the screen */
+    display: flex; /* Centers the modal content */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    z-index: 1000; /* Ensures it's on top of other content */
+    display: none;
+}
+#popupback.active{
+    display: block;
+}
+
+.studentprofile {
+    width: 45%;
+    background-color: white;
+    margin: auto;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 50px; /* Adjust for centering */
+    position: relative;
+}
+
+#cancel {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(24, 17, 44);
+    cursor: pointer;
+    text-align: right;
+    margin-bottom: -5px;
+    background-color: transparent;
+    border: none;
+    float: right;
+}
+
+
+
+#savebutton {
+    width: 100%;
+    background-color: rgb(36, 40, 70);
+    transition: background 0.2s ease;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+}
+
+#savebutton:hover {
+    background-color: rgb(25, 28, 49);
+}
+a{
+    color: black;
+    float: right;
+    margin-right: 50px;
+    margin-top: 10px;
+}
+#resumebut{
+    width: 100%;
+    height: 5vh;
+    border: none;
+    border-radius: 25px;
+    border: 3px solid rgb(60, 69, 107);
+    background-color: transparent;
+    color: rgb(60, 69, 107);
+    transition: all ease 0.3s;
+    margin-top: 13px
+}
+#resumebut:hover{
+    background-color: rgb(60, 69, 107);
+    color:white;
+}
+
+@media (max-width: 1200px) {
+  .filter_bar{
+    width: 90%;
+  }
+  .search_list{
+    width: 90%;
+    
+  }
+  .studentprofile{
+    width: 75%;
+}
+.upper {
+    display: flex;
+
+    width: 100%;
+}
+.right td{
+    width: 100%;
+}
+.right td p{
+    width: 100%;
+}
+#resumebut{
+    width: 100%;
+}
+
+}
+@media(max-width: 1500px) {
+    .studentprofile{
+        width: 60%;
+        max-height: 90vh;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 785px) {
+    .left {
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .studentprofile img {
+        width: 50%;
+    }
+    .right{
+
+        width: 100%;
+    }
+    .left1{
+        width: 100%;
+    }
+
+    .upper {
+        display: flex;
+        flex-wrap: wrap;
+
+        width: 100%;
+        height: fit-content;
+    }
+
+
+    .studentprofile{
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: scroll;
+    }
+
+    .filter_bar{
+      width: 95%;
+    }
+    .search_list{
+      width: 95%;
+      margin-top: 0;
+    }
+    .filter_bar {
+        width: 95%;
+        flex-direction: column;
+        margin: 20px auto;
+    }
+
+    .Uni_bar,
+    .Course_bar,
+    .Year_bar,
+    .Industry_bar,
+    .Indigenous_bar {
+        width: 100%;
+        padding: 10px;
+        text-align: left;
+    }
+    .search_list p{
+        font-size: 13px;
+    }
+    .inneritem{
+        font-size: 13px;
+        padding: 10px;
+    }
+    .listitem .pfp1{
+        width: 60px;
+    }
+    .Headeritem .pfp1{
+        width: 60px;
+        height: 60px;
+        padding-right: 60px;
+    }
+    .Headeritem div{
+        width: 100%;
+    }
+    .bar{
+        width: 100%;
+        padding: 20px;
+        border-bottom: 2px solid;
+        background-color: rgb(41, 46, 70);
+        display: flex;
+    }
+    .bar img{
+        width: 100%;
+    }
+    .logo{
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .name{
+        width: fit-content;
+        display: flex;
+        justify-items: right;
+        align-items: center; 
+        color: white;
+        margin-right: 20px;
+        margin-left: auto;
+    }
+    .name a{
+        width:fit-content;
+        color: white;
+        margin: 0;
+    }
+
+    
+  
+  }

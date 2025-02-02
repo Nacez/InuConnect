@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.page1 {
+    display: flex;
+    max-width: 100%;
+    height: 100vh; /* Ensures the page spans the full viewport height */
+}
+
+.page1business {
+    display:flex;
+    flex-direction: row-reverse;
+    max-width: 100%;
+    height: 100vh; /* Ensures the page spans the full viewport height */
+}
+
+
+.imageleft {
+    width: 65%;
+    height: 100vh;
+    background-image: url('https://images.pexels.com/photos/6146978/pexels-photo-6146978.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+}
+
+
+.imageleftbusiness {
+    width: 65%;
+    height: 100vh;
+    background-image: url('https://images.pexels.com/photos/3184416/pexels-photo-3184416.jpeg?cs=srgb&dl=pexels-fauxels-3184416.jpg&fm=jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+}
+
+.loginright {
+    width: 35%; /* Remaining space of the flex container */
+    padding: 20px;
+}
+.formoverall{
+    padding: 30px;
+    margin-top: 30%;
+}
+.login-button{
+    width: 100px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    background-color: rgb(59, 58, 77);
+    color: white;
+    transition: background 0.3s ease;
+}
+.login-button:hover{
+    background-color: rgb(35, 34, 48); 
+}
+.button1group {
+    display: flex;
+    align-items: center; /* Aligns items vertically in the center */
+    gap: 10px; /* Adds space between the elements */
+}
+.button1group p{
+    margin-top: 15px;
+}
+
+.forgotp {
+    position: absolute;
+    bottom: 0;
+    text-align: center; /* Centers the text horizontally */
+    padding: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+    .page1 {
+        flex-direction: column; /* Stack image and login sections */
+    }
+
+    .page1business {
+        flex-direction: column; /* Stack image and login sections */
+    }
+
+    .imageleft {
+        width: 100%;
+        height: 50vh; /* Adjust height for smaller screens */
+    }
+    .imageleftbusiness {
+        width: 100%;
+        height: 50vh; /* Adjust height for smaller screens */
+    }
+
+    .loginright {
+        width: 100%; /* Take full width on smaller screens */
+        justify-content: center; /* Ensure vertical centering */
+    }
+
+    .formoverall {
+        margin-top: 0; /* Remove extra top margin */
+        padding: 20px;
+    }
+    .forgotp {
+        position: relative;
+        text-align: left; /* Centers the text horizontally */
+        padding: 30px;
+        
+    }
+    .button1group {
+        display: block;
+        align-items: center; /* Aligns items vertically in the center */
+        gap: 10px; /* Adds space between the elements */
+    }
+}
+.signup1{
+    padding-left: 30px;
+}
+.inulogo{
+    width: 40%;
+    margin: auto;
+    margin-bottom: 30px;
+    align-self: center;
+}
+.inulogo img{
+    width: 100%;
+}

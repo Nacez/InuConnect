@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{{ url_for('static', filename='images/inu_logo_short.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/business_dashboardcss.css') }}"> <!-- Link to an external CSS file -->
+
+
+</head>
+<body>
+    <div>
+        <div class="bar">
+            <div class="logo"><img src="{{ url_for('static', filename='images/inu_logo_long.png') }}" alt="InuConnect" onclick="location.href='/'"></div>
+
+            <div class="name">
+                <p class="lead">Welcome back {{ records.bname }}</p>
+            </div>
+        </div>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+        {% for category, message in messages %}
+          <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+    <div class="overall">
+        <div class="leftside">
+            <h1>Business Dashboard</h1>
+            <div class="bdetails">
+                <h4>Business Details</h4>
+                <table>
+                    <tr>
+                        <td><u>Business Name</u></td>
+                        <td>{{ records.bname }}</td>
+                    </tr>
+                    <tr>
+                        <td><u>Industry</u></td>
+                        <td>{{ records.industry }}</td>
+                    </tr>
+                    <tr>
+                        <td><u>Location</u></td>
+                        <td>{{ records.location }}</td>
+                    </tr>
+                    <tr>
+                        <td><u>Description</u></td>
+                        <td>{{ records.description }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="bcurrent">
+                <h4>Current Students Found</h4>
+                <div class="currentstudents">
+                    <li id="currenttitle"><div class="innertitle">Name</div><div class="innertitle">University</div><div class="innertitle">Accepted Date</div></li>
+                    {% for student in current %}
+                    <li class="secondclick"  data-relocation="{{ student.relocation }}" 
+                    data-uni="{{ student.uniname }}" 
+                    data-yearatuni="{{ student.year_of_study }}" 
+                    data-industry="{% for x in student.industry_preference %}{{ x | lower }},{% endfor %}" 
+                    data-ato="{{ student.ato }}" 
+                    data-fname="{{ student.fname }}" 
+                    data-lname="{{ student.lname }}" 
+                    data-degree="{{ student.degree }}" 
+                    data-pfp="{{ student.pfpfile }}" 
+                    data-email="{{ student.email }}" 
+                    data-phone="{{ student.phone }}"
+                    data-city_work="{{ student.city_work }}"
+                    data-skills="{{ student.skills }}"
+                    data-certifications="{{ student.certifications }}"
+                    data-linkedin="{{ student.linkedin }}"
+                    data-resumefile="{{ student.resumefile }}"
+                    data-student_id="{{ student.student_id }}"><div class="innerp">{{ student.fname }}</div><div class="innerp">{{ student.uniname }}</div><div class="innerp">{{ student.accepted }}</div></li>
+                    {% endfor %}                    
+                </div>
+            </div>
+
+
+        </div>
+        <div class = "middleside">
+            <h4>Job Posts</h4>
+            <button id="createjobbutton">Create New Job Post +</button>
+            <div class="Joblist">
+                {% for post in records.jobposts %}
+                <div class = "JobCard" data-post_id="{{ post.post_id }}">
+                    <h6 class="lead">{{ post.title }}</h6> 
+                    <p>{{ post.location }}</p>
+                    <p class="bigdescrip">{{ post.description }}</p>
+                    <p><small>{{ post.date }}</small></p>
+                    <p><small>{{ post.responses | length }} response(s)</small></p>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <div class = "rightside">
+            <button class="rightside" onclick="location.href='/student_finder'">
+                Go To Student Finder 
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/768px-Magnifying_glass_icon.svg.png" alt="search" class="invert-image">
+              </button>
+            <div class="saved">
+                <h4>Saved Students</h4>
+                <div class = "savedstudents">
+                    <li id="savedtitle"><div class="innertitle">Name</div><div class="innertitle">University</div><div class="innertitle">Degree</div><div class="innertitle">Year</div></li>
+                    {% for student in students %}
+                    <li class="clickli" data-relocation="{{ student.relocation }}" 
+                    data-uni="{{ student.uniname }}" 
+                    data-yearatuni="{{ student.year_of_study }}" 
+                    data-industry="{% for x in student.industry_preference %}{{ x | lower }},{% endfor %}" 
+                    data-ato="{{ student.ato }}" 
+                    data-fname="{{ student.fname }}" 
+                    data-lname="{{ student.lname }}" 
+                    data-degree="{{ student.degree }}" 
+                    data-pfp="{{ student.pfpfile }}" 
+                    data-email="{{ student.email }}" 
+                    data-phone="{{ student.phone }}"
+                    data-city_work="{{ student.city_work }}"
+                    data-skills="{{ student.skills }}"
+                    data-certifications="{{ student.certifications }}"
+                    data-linkedin="{{ student.linkedin }}"
+                    data-resumefile="{{ student.resumefile }}"
+                    data-student_id="{{ student.student_id }}"><div class="innerp1">
+                        {{ student.fname }}</div><div class="innerp">{{ student.uniname }}</div><div class="innerp">{{ student.degree }}</div><div class="innerp">{{ student.year_of_study }}</div>
+                    </li>
+                    {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="createjobback">
+        <div id="createjob">
+            <div class="titlebar"><h4>Create a Job Post</h4><h4 id="cancel">x</h4></div>
+            <form action="{{ url_for('main.business_dashboard') }}" method="POST">
+                <div class="mb-3">
+                    <label for="jobtitle" class="form-label">Job Title</label>
+                    <input type="text" class="form-control" id="jobtitle" placeholder="Job Title Here" name="jobtitle" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Industry" class="form-label">Industry</label>
+                    <select class="form-select" id="Industry" name="Industry" required>
+                    {% for work in Industry %}
+                    <option value="{{ work }}">{{ work }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" placeholder="State here" aria-label="State" id="state" name="state" required>
+                    </div>
+                    <div class="col">
+                        <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" placeholder="City here" aria-label="State" id="city" name="city" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textarea" required></textarea>
+                </div>
+                <button type="submit">Create Job Post</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="popupback">
+        <div class="studentprofile">
+             <button id="cancel1" onclick="cancel()">X</button>
+             <div class="upper">
+                <div class="left">
+                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profilepic">   
+                </div>
+                <div class="right">
+                    <table>
+                        <tr>
+                            <td><p class="lead"><strong>Kye Jones</strong></p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead">uni of bitches</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="lead">computer science</p></td>
+                        </tr>
+                        <tr>
+                            <td>Email: </td>
+                            <td><p>Kyej2005@gmail.com</p></td>
+                        </tr>
+                        <tr>
+                            <td>Phone: </td>
+                            <td><p>0472 272 127</p></td>
+                        </tr>
+                    </table>
+                </div>
+            </div> 
+            <div class="lower">
+                <div class="left1">
+                    <p class="lead"><strong>Industry Preferences</strong></p>
+                    <p class="lead">Accounting</p>
+                    <p class="lead">Accounting</p>
+                    <p class="lead">Accounting</p>
+                    <p class="lead">Accounting</p>
+                    <p class="lead">Accounting</p>
+                </div>
+                <div class="right">
+                    <table>
+                        <tr>
+                            <td>Relocation: </td>
+                            <td><p></p></td>
+                        </tr>
+                        <tr>
+                            <td>Aboriginal or Tores Strait Islander: </td>
+                            <td><p></p></td>
+                        </tr>
+                        <tr>
+                            <td>Prefered City to Work: </td>
+                            <td><p></p></td>
+                        </tr>
+                        <tr>
+                            <td>Certifications: </td>
+                            <td><p></p></td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn: </td>
+                            <td><a href="" target="_blank"></a></td>
+                        </tr>
+                        <tr>
+                            <td>Skills: </td>
+                            <td><p></p></td>
+                        </tr>
+                        <button id="resumebut">View Resume</button>
+                    </table>
+                </div>
+            </div> 
+            <div class="buttonspop">
+            <button id="currentbutton" onclick="">Make Current Student</button>
+            <button id="unsavebutton" onclick="">Unsave Student</button>
+        </div>
+        </div> 
+    </div>
+
+        <div id="popupback1">
+            <div class="studentprofile">
+                 <button id="cancel2" onclick="cancel()">X</button>
+                 <div class="upper">
+                    <div class="left">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profilepic">   
+                    </div>
+                    <div class="right">
+                        <table>
+                            <tr>
+                                <td><p class="lead"><strong></strong></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="lead"></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="lead"></p></td>
+                            </tr>
+                            <tr>
+                                <td>Email: </td>
+                                <td><p></p></td>
+                            </tr>
+                            <tr>
+                                <td>Phone: </td>
+                                <td><p></p></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div> 
+                <div class="lower">
+                    <div class="left1">
+                        <p class="lead"><strong>Industry Preferences</strong></p>
+                        <p class="lead">Accounting</p>
+                        <p class="lead">Accounting</p>
+                        <p class="lead">Accounting</p>
+                        <p class="lead">Accounting</p>
+                        <p class="lead">Accounting</p>
+                    </div>
+                    <div class="right">
+                        <table>
+                            <tr>
+                                <td>Relocation: </td>
+                                <td><p></p></td>
+                            </tr>
+                            <tr>
+                                <td>Aboriginal or Tores Strait Islander: </td>
+                                <td><p></p></td>
+                            </tr>
+                            <tr>
+                                <td>Prefered City to Work: </td>
+                                <td><p></p></td>
+                            </tr>
+                            <tr>
+                                <td>Certifications: </td>
+                                <td><p></p></td>
+                            </tr>
+                            <tr>
+                                <td>LinkedIn: </td>
+                                <td><a href="" target="_blank"></a></td>
+                            </tr>
+                            <tr>
+                                <td>Skills: </td>
+                                <td><p></p></td>
+                            </tr>
+                            <button id="resumebut1">View Resume</button>
+                        </table>
+                    </div>
+                </div> 
+                <div class="buttonspop">
+                <button id="uncurrentbutton" onclick="">No Longer Current</button>
+            </div>
+            </div> 
+    </div>
+
+    <script>
+        const logoutPopup = document.getElementById("createjobback");
+        const showPopupButton = document.getElementById("createjobbutton");
+        const cancelButton = document.getElementById("cancel");
+    
+        // Function to show the popup
+        showPopupButton.addEventListener("click", () => {
+            logoutPopup.classList.add("active");
+        });
+    
+        // Function to hide the popup (when cancel is clicked)
+        cancelButton.addEventListener("click", () => {
+            logoutPopup.classList.remove("active");
+        });
+    </script>
+    <script>
+            // Get the popup container and cancel button
+            const cancelButton1 = document.getElementById("cancel1");
+            const popup = document.getElementById("popupback");
+          
+            // Function to close the popup
+            function cancel() {
+              popup.classList.remove("active");
+              location.reload();
+            }
+          
+            // Function to show the popup with student data
+            function showPopup1(student) {
+              // Populate the popup with student data
+              document.getElementById("popupback").classList.add("active");
+              document.querySelector("#popupback .studentprofile img").src = "{{ url_for('static', filename='images/profilepics/') }}" + student.pfpfile;
+              document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(1) td p strong").innerText = `${student.fname} ${student.lname}`;
+              document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(2) td p").innerText = student.uniname;
+              document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(3) td p").innerText = student.degree;
+              document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(4) td p").innerText = student.email;
+              document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(5) td p").innerText = student.phone;
+          
+              // For industry preferences (assuming multiple preferences)
+              const industryList = student.industry_preference.split(",").map(industry => industry.trim());
+              const industryDiv = document.querySelector("#popupback .studentprofile .lower .left1");
+              industryDiv.innerHTML = "<p class='lead'><strong>Industry Preferences</strong></p>";  // Reset content
+              industryList.forEach(industry => {
+                const p = document.createElement("p");
+                p.classList.add("lead");
+                p.innerText = industry;
+                industryDiv.appendChild(p);
+              });
+          
+              // Populate the rest of the fields in the popup as needed (e.g., relocation, ato)
+              document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(1) td p").innerText = student.relocation;
+              document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(2) td p").innerText = student.ato;
+              document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(3) td p").innerText = student.city_work;
+              document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(4) td p").innerText = student.certifications;
+              document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(5) td a").innerText = student.linkedin;
+              document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(5) td a").href = student.linkedin;
+              document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(6) td p").innerText = student.skills;
+
+                const resumeButton = document.getElementById("resumebut");
+            resumeButton.onclick = () => {
+                if (student.resumefile === ""){
+                    resumeButton.textContent = "No Saved Resume"
+                }
+                else{
+                    window.open(`/static/pdf/resumes/${student.resumefile}`, "_blank");
+                }}; // Opens the resume in a new tab
+
+              document.getElementById("unsavebutton").onclick = function () {
+                unsaveStudentData(student);
+                location.reload();
+              };
+              // Attach event to save button to send data to server
+              document.getElementById("currentbutton").onclick = function () {
+                saveStudentData(student);
+                location.reload();
+              };
+            }
+          
+            
+            // Function to save student data by sending it to the server
+            function saveStudentData(student) {
+              fetch('/student_saver', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(student),  // Send the student object as JSON
+              })
+            }
+
+            function unsaveStudentData(student) {
+              fetch('/student_unsaver', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(student),  // Send the student object as JSON
+              })
+            }
+          
+            // Listen for clicks on list items
+            document.querySelectorAll('.clickli').forEach(item => {
+              item.addEventListener("click", () => {
+                const student = {
+                  pfpfile: item.dataset.pfp,
+                  fname: item.dataset.fname,
+                  lname: item.dataset.lname,
+                  degree: item.dataset.degree,
+                  email: item.dataset.email,
+                  phone: item.dataset.phone,
+                  relocation: item.dataset.relocation,
+                  uniname: item.dataset.uni,
+                  year_of_study: item.dataset.yearatuni,
+                  industry_preference: item.dataset.industry,
+                  ato: item.dataset.ato,
+                  city_work: item.dataset.city_work,
+                  certifications: item.dataset.certifications,
+                  skills: item.dataset.skills,
+                  degree: item.dataset.degree,
+                  linkedin: item.dataset.linkedin,
+                  resumefile: item.dataset.resumefile,
+                  student_id: item.dataset.student_id
+                };
+                showPopup1(student);
+              });
+            });
+    </script>
+<script>
+function responsepage(student) {
+    fetch('/post_response', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(student), // Send the student object as JSON
+    })
+    .then(response => response.text()) // Get the HTML response as text
+    .then(html => {
+        // Navigate to the new URL (e.g., /post_response) and pass the post_id as a query parameter
+        window.location.href = `/post_response?post_id=${student.post_id}`;
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+document.querySelectorAll('.JobCard').forEach(item => {
+    item.addEventListener("click", () => {
+        const student = {
+            post_id: item.dataset.post_id,
+        };
+        responsepage(student);
+    });
+});
+</script>
+
+
+<script>
+    // Get the popup container and cancel button
+    const cancelButton2 = document.getElementById("cancel2");
+    const popup1 = document.getElementById("popupback1");
+  
+    // Function to close the popup
+    function cancel() {
+      popup1.classList.remove("active");
+      location.reload();
+    }
+  
+    // Function to show the popup with student data
+    function showPopup(student) {
+      // Populate the popup with student data
+      document.getElementById("popupback1").classList.add("active");
+      document.querySelector("#popupback1 .studentprofile img").src = "{{ url_for('static', filename='images/profilepics/') }}" + student.pfpfile;
+      document.querySelector("#popupback1 .studentprofile .upper .right table tr:nth-child(1) td p strong").innerText = `${student.fname} ${student.lname}`;
+      document.querySelector("#popupback1 .studentprofile .upper .right table tr:nth-child(2) td p").innerText = student.uniname;
+      document.querySelector("#popupback1 .studentprofile .upper .right table tr:nth-child(3) td p").innerText = student.degree;
+      document.querySelector("#popupback1 .studentprofile .upper .right table tr:nth-child(4) td p").innerText = student.email;
+      document.querySelector("#popupback1 .studentprofile .upper .right table tr:nth-child(5) td p").innerText = student.phone;
+   
+      // For industry preferences (assuming multiple preferences)
+      const industryList = student.industry_preference.split(",").map(industry => industry.trim());
+      const industryDiv = document.querySelector("#popupback1 .studentprofile .lower .left1");
+      industryDiv.innerHTML = "<p class='lead'><strong>Industry Preferences</strong></p>";  // Reset content
+      industryList.forEach(industry => {
+        const p = document.createElement("p");
+        p.classList.add("lead");
+        p.innerText = industry;
+        industryDiv.appendChild(p);
+      });
+  
+      // Populate the rest of the fields in the popup as needed (e.g., relocation, ato)
+      document.querySelector("#popupback1 .studentprofile .lower .right table tr:nth-child(1) td p").innerText = student.relocation;
+      document.querySelector("#popupback1 .studentprofile .lower .right table tr:nth-child(2) td p").innerText = student.ato;
+      document.querySelector("#popupback1 .studentprofile .lower .right table tr:nth-child(3) td p").innerText = student.city_work;
+      document.querySelector("#popupback1 .studentprofile .lower .right table tr:nth-child(4) td p").innerText = student.certifications;
+      document.querySelector("#popupback1 .studentprofile .lower .right table tr:nth-child(5) td a").innerText = student.linkedin;
+      document.querySelector("#popupback1 .studentprofile .lower .right table tr:nth-child(5) td a").href = student.linkedin;
+      document.querySelector("#popupback1 .studentprofile .lower .right table tr:nth-child(6) td p").innerText = student.skills;
+
+      const resumeButton = document.getElementById("resumebut1");
+            resumeButton.onclick = () => {
+                if (student.resumefile === ""){
+                    resumeButton.textContent = "No Saved Resume"
+                }
+                else{
+                    window.open(`/static/pdf/resumes/${student.resumefile}`, "_blank");
+                }}; // Opens the resume in a new tab
+
+      document.getElementById("uncurrentbutton").onclick = function () {
+        uncurrentStudentData(student);
+        location.reload();
+      };
+
+    }
+  
+    
+    function uncurrentStudentData(student) {
+      fetch('/student_uncurrent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(student),  // Send the student object as JSON
+      })
+    }
+  
+    // Listen for clicks on list items
+    document.querySelectorAll('.secondclick').forEach(item => {
+      item.addEventListener("click", () => {
+        const student = {
+          pfpfile: item.dataset.pfp,
+          fname: item.dataset.fname,
+          lname: item.dataset.lname,
+          degree: item.dataset.degree,
+          email: item.dataset.email,
+          phone: item.dataset.phone,
+          relocation: item.dataset.relocation,
+          uniname: item.dataset.uni,
+          year_of_study: item.dataset.yearatuni,
+          industry_preference: item.dataset.industry,
+          ato: item.dataset.ato,
+          city_work: item.dataset.city_work,
+          certifications: item.dataset.certifications,
+          skills: item.dataset.skills,
+          degree: item.dataset.degree,
+          linkedin: item.dataset.linkedin,
+          resumefile: item.dataset.resumefile,
+          student_id: item.dataset.student_id
+        };
+        showPopup(student);
+      });
+    });
+  </script>
+</body>
+</html>

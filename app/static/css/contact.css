@@ -1,0 +1,59 @@
+.overall {
+    background-image: url("../images/dashboard.png");
+    background-position: center;
+    background-size: cover;
+    display: flex; /* Enables flexbox */
+    align-items: center; /* Centers vertically */
+    justify-content: center; /* Centers horizontally */
+    min-height: 80vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#contactform{
+    width: 50%;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: rgb(255, 255, 255);
+}
+
+#contactform button{
+    width: 100%;
+    background-color: rgb(36, 40, 70);
+    transition: background 0.2s ease;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    margin: 5px;
+}
+.uptop{
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(41, 46, 70);
+    text-align: center;
+}
+h1{
+    font-size: 90px;
+    color: white;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+@media (max-width: 1300px) {
+    h1{
+        font-size: 50px;
+    }}
+    @media (max-width: 1200px) {
+        h1{
+            font-size: 50px;
+        }}
+@media (max-width: 700px) {
+    #contactform{
+        width: 80%;
+    }
+}

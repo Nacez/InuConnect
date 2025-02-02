@@ -1,0 +1,370 @@
+{% extends "base.html" %}
+
+{% block title %}Student Sign-up{% endblock %}
+{% block style%}<link rel="stylesheet" href="{{ url_for('static', filename='css/studentsign.css') }}">{% endblock %}
+
+{% block content %}
+<body>
+
+    <div class="formdiv">
+
+        <form method="post" enctype="multipart/form-data">
+            <h1 style="text-align: left;"> ADMIN Edit Student Profile</h1>
+            <p style="color:rgb(30, 30, 94)">Reminder: What ever you change here will be changed on the students profile</p>
+            <div class="row">
+                <div class="col">
+                <label for="Fname" class="form-label">First Name</label>
+                <input type="text" class="form-control" placeholder="First name" id="Fname" name="fname" value="{{ student.fname }}" required>
+                </div>
+                <div class="col">
+                    <label for="Lname" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="Lname" name="Lname" value="{{ student.lname }}" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="inputactive" class="form-label">Status of account</label>
+                <select id="inputactive" class="form-select" name="active" required>
+                <option value ="{{ student.status }}">{{ student.status }} (This is your current status)</option>
+                <option value="paused">Pause Account</option>
+                <option selected value="active">Active</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Update your profile picture</label>
+                <p><small>Please make sure the photo is respectful and of you.</small></p>
+                <img src="{{ url_for('static', filename='images/profilepics/' + student.pfpfile) }}" alt="Profile Picture" style="max-width: 150px; max-height: 150px; display: block; margin-bottom: 10px;">
+                <input type="file" name="pfpfile" accept="image/*" class="form-control"  value="{{ student.pfpfile }}" ></div>
+
+                <div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Upload your resume</label>
+                    <p><small>your resume MUST be a pdf.</small></p>
+                    {% if student.resumefile != "" %}
+                    <p><small>You've aleady submitted a resume.</small></p>
+                    {% endif %}
+                    <input type="file" name="resumefile" accept="application/pdf" class="form-control">
+                </div>
+            <div class="col-12">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="number" class="form-control" id="inputAddress" placeholder="0412 345 678" name="phone" value="{{ student.phone }}"  required>
+            </div>
+            
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address"  value="{{ student.address }}" required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="inputCity" name="city"  value="{{ student.city }}" required>
+            </div>
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">State</label>
+                <select id="inputState" class="form-select" name="state" required>
+                <option value="{{ student.state }}">{{ student.state }} (This is your current state)</option>
+                <option value="NSW">NSW</option>
+                <option value="QLD">QLD</option>
+                <option value="WA">WA</option>
+                <option value="SA">SA</option>
+                <option value="TAS">TAS</option>
+                <option value="NT">NT</option>
+                <option value="VIC">VIC</option>
+                <option value="ACT">ACT</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Zip/ Postcode</label>
+                <input type="text" class="form-control" id="inputZip" name="zip" value="{{ student.zip }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="ATO" class="form-label">Are you Aboriginal or Torres Strait Islander</label>
+                <select class="form-select" id="ATO" name="ATO" required>
+                <option value="{{ student.ato }}">{{ student.ato }} (You've already selected this)</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="universityName" class="form-label">University Name</label>
+                <select class="form-select" id="universityName" name="uniname" required>
+                <option value="{{ student.uniname }}">{{ student.uniname }} (already chosen)</option>
+                {% for uni in unis %}
+                <option value="{{ uni }}">{{ uni }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            
+            <!-- Degree -->
+            <div class="mb-3">
+                <label for="degree" class="form-label">Degree</label>
+                <input type="text" class="form-control" id="degree" placeholder="Enter your degree (e.g., Bachelor of Engineering)" name="degree" value="{{ student.degree }}"  required>
+            </div>
+
+            <div class="mb-3">
+                <label for="yearOfStudy" class="form-label">Year of Study</label>
+                <select class="form-select" id="yearOfStudy" name="yearffstudy" required>
+                <option value="{{ student.year_of_study }}">{{ student.year_of_study }} (already chosen)</option>
+                <option value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Fourth Year</option>
+                </select>
+            </div>
+            <!-- Year of Study -->
+            <div class="mb-3">
+                <label for="yearOfStudy" class="form-label">City Preference (To work in)</label>
+                <p><small>Bigger cities my allow for more opputunities</small></p>
+                <select class="form-select" id="yearOfStudy" name="citywork" required>
+                    <option value="{{ student.city_work }}">{{ student.city_work }} (already chosen)</option>
+                    <option value="Adelaide">Adelaide (recommended)</option>
+                    <option value="Albany">Albany</option>
+                    <option value="Albury">Albury</option>
+                    <option value="Alice Springs">Alice Springs</option>
+                    <option value="Armidale">Armidale</option>
+                    <option value="Ballarat">Ballarat</option>
+                    <option value="Bathurst">Bathurst</option>
+                    <option value="Bendigo">Bendigo</option>
+                    <option value="Brisbane">Brisbane (recommended)</option>
+                    <option value="Broken Hill">Broken Hill</option>
+                    <option value="Bundaberg">Bundaberg</option>
+                    <option value="Burnie">Burnie</option>
+                    <option value="Bunbury">Bunbury</option>
+                    <option value="Busselton">Busselton</option>
+                    <option value="Cairns">Cairns</option>
+                    <option value="Canberra">Canberra (recommended)</option>
+                    <option value="Coffs Harbour">Coffs Harbour</option>
+                    <option value="Darwin">Darwin (recommended)</option>
+                    <option value="Devonport">Devonport</option>
+                    <option value="Dubbo">Dubbo</option>
+                    <option value="Geelong">Geelong</option>
+                    <option value="Geraldton">Geraldton</option>
+                    <option value="Gladstone">Gladstone</option>
+                    <option value="Gold Coast">Gold Coast (recommended)</option>
+                    <option value="Goulburn">Goulburn</option>
+                    <option value="Hervey Bay">Hervey Bay</option>
+                    <option value="Hobart">Hobart</option>
+                    <option value="Horsham">Horsham</option>
+                    <option value="Kalgoorlie">Kalgoorlie</option>
+                    <option value="Karratha">Karratha</option>
+                    <option value="Katherine">Katherine</option>
+                    <option value="Launceston">Launceston</option>
+                    <option value="Lismore">Lismore</option>
+                    <option value="Mackay">Mackay</option>
+                    <option value="Mandurah">Mandurah</option>
+                    <option value="Melbourne">Melbourne</option>
+                    <option value="Mildura">Mildura</option>
+                    <option value="Mount Gambier">Mount Gambier</option>
+                    <option value="Mount Isa">Mount Isa</option>
+                    <option value="Murray Bridge">Murray Bridge</option>
+                    <option value="Nhulunbuy">Nhulunbuy</option>
+                    <option value="Newcastle">Newcastle</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Perth">Perth (recommended)</option>
+                    <option value="Port Augusta">Port Augusta</option>
+                    <option value="Port Hedland">Port Hedland</option>
+                    <option value="Port Lincoln">Port Lincoln</option>
+                    <option value="Port Macquarie">Port Macquarie</option>
+                    <option value="Rockhampton">Rockhampton</option>
+                    <option value="Shepparton">Shepparton</option>
+                    <option value="Sunshine Coast">Sunshine Coast</option>
+                    <option value="Sydney">Sydney (recommended)</option>
+                    <option value="Tamworth">Tamworth</option>
+                    <option value="Tennant Creek">Tennant Creek</option>
+                    <option value="Toowoomba">Toowoomba</option>
+                    <option value="Townsville">Townsville</option>
+                    <option value="Wagga Wagga">Wagga Wagga</option>
+                    <option value="Wangaratta">Wangaratta</option>
+                    <option value="Warrnambool">Warrnambool</option>
+                    <option value="Whyalla">Whyalla</option>
+                    <option value="Wodonga">Wodonga</option>
+                    <option value="Wollongong">Wollongong</option>
+                    
+                    
+                </select>
+            </div>
+            <div class="col-12">
+                <label class="form-check-label" for="gridCheck">Are you open to relocate for work?</label>
+            
+                {% if student.relocation == "yes" %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="gridCheckYes" value="yes" name="relocation" checked>
+                    <label class="form-check-label" for="gridCheckYes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="gridCheckNo" value="no" name="relocation">
+                    <label class="form-check-label" for="gridCheckNo">No</label>
+                </div>
+                {% else %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="gridCheckYes" value="yes" name="relocation">
+                    <label class="form-check-label" for="gridCheckYes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="gridCheckNo" value="no" name="relocation" checked>
+                    <label class="form-check-label" for="gridCheckNo">No</label>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="dropdown">
+                <label for="industryPreference" class="form-label">Industry Preferences</label>
+                <p><small>You can only select a max of 5</small></p>
+            
+                <!-- Search input for filtering industries -->
+                <input type="text" placeholder="Search industries..." oninput="filterDropdown()" class="form-control">
+            
+                <!-- Dropdown menu for industry options -->
+                <div class="dropdown-menu" id="dropdownMenu">
+                    {% for work in Industry %}
+                    <label>
+                        <input type="checkbox" name="industryPreference[]" value="{{ work }}"
+                        {% if work in student.industry_preference %} checked {% endif %}>
+                        {{ work }}
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Top Skills -->
+            <div class="mb-3">
+                <label for="topSkills" class="form-label">Top Skills</label>
+                <input type="text" class="form-control" id="topSkills" placeholder="List your top skills (e.g., Python, Data Analysis)" name="skills" value="{{ student.skills }}" required>
+            </div>
+            
+            <!-- Certifications -->
+            <div class="mb-3">
+                <label for="certifications" class="form-label">Certifications</label>
+                <input type="text" class="form-control" id="certifications" placeholder="Enter your certifications (e.g., AWS Certified)" name="certifications" value="{{ student.certifications }}">
+            </div>
+            
+            <!-- LinkedIn Link -->
+            <div class="mb-3">
+                <label for="linkedinLink" class="form-label">LinkedIn Profile Link</label>
+                <input type="url" class="form-control" id="linkedinLink" placeholder="Enter your LinkedIn profile URL" name="linkedin" value="{{ student.linkedin }}">
+            </div>
+            
+            <div><button type="button" id="deleteaccount">Delete Account</button></div>
+            <!-- Submit Button -->
+
+            <button type="submit" id="submitedit">Submit Changes</button>
+        </form>
+    </div>
+
+    <div id="deleteback">
+        <div class="deleteconfirm">
+            <div><p>Are you sure you want to delete your student profile?</p></div>
+            <div class = "deletebuttons1"> 
+                <button id="deletenow">Delete Profile</button>
+                <button id="nocancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const nocancel = document.getElementById("nocancel");
+        const deleteback = document.getElementById("deleteback");
+        
+        // Show the popup when the delete button is clicked
+        document.getElementById("deleteaccount").onclick = function () {
+            deleteback.classList.add("active");
+        };
+        
+        // Hide the popup when cancel is clicked
+        nocancel.onclick = function () {
+            deleteback.classList.remove("active");
+        };
+        
+        // Perform the deletion and redirect to the business dashboard
+        document.getElementById("deletenow").onclick = function () {
+            deletionofpost();
+        };
+        
+        function deletionofpost() {
+            const student = "{{ student.student_id }}"; // Ensure post_id is injected correctly by Flask
+            const student_id = { student_id: student };
+        
+            fetch('/delete_student', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(student_id),  // Send the post_id as JSON
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete the student');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('student deleted successfully:', data);
+                // Redirect to the business dashboard after deletion
+                window.location.href = "/";  // Change this URL to match the business dashboard
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        
+            </script>
+    <script>
+        function limitCheckboxes() {
+            const checkboxes = document.querySelectorAll('.limit-checkbox');
+            const maxAllowed = 5;
+            let checkedCount = 0;
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) checkedCount++;
+            });
+
+            if (checkedCount > maxAllowed) {
+                alert(`You can only select up to ${maxAllowed} options.`);
+                event.target.checked = false;
+            }
+        }
+    </script>
+    <script>
+        const dropdown = document.querySelector('.dropdown input[type="text"]');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const checkboxes = dropdownMenu.querySelectorAll('input[type="checkbox"]');
+        const MAX_SELECTION = 5;
+
+        // Toggle dropdown menu on input click
+        dropdown.addEventListener('focus', () => {
+            dropdownMenu.classList.add('show');
+        });
+
+        // Filter dropdown options based on input
+        function filterDropdown() {
+            const filter = dropdown.value.toLowerCase();
+            const labels = dropdownMenu.querySelectorAll('label');
+            labels.forEach(label => {
+                const text = label.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    label.style.display = '';
+                } else {
+                    label.style.display = 'none';
+                }
+            });
+        }
+
+        // Limit maximum selections
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+                if (checkedCount > MAX_SELECTION) {
+                    alert(`You can select a maximum of ${MAX_SELECTION} options.`);
+                    checkbox.checked = false; // Uncheck the last selection
+                }
+            });
+        });
+
+        // Close dropdown menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!document.querySelector('.dropdown').contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{{ url_for('static', filename='images/inu_logo_short.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dash.css') }}"> <!-- Link to an external CSS file -->
+
+
+</head>
+<body>
+    <div class="bar">
+        <div class="logo"><img src="{{ url_for('static', filename='images/inu_logo_long.png') }}" alt="UniConnect"></div>
+        <div class="name">
+            <p><a href="/">Go home</a></p>
+        </div>
+
+    </div>
+    <div class="upperbuttons">
+        <button id="newbusiness">New Business +</button>
+        <button id="accountscan">Inactive Account Scan</button>
+    </div>
+    <div class="overall">
+        <div class="studentside">
+            <div class="studentsearch">
+                <input type="text" id="searchbar" placeholder="Type name..." >
+                <div class="mb-3">
+                    <label for="status" class="form-label">Account Status</label>
+                    <select id="status" name="status" class="form-select">
+                        <option value="All">All</option>
+                        <option value="active">Active</option>
+                        <option value="paused">Paused</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Aboriginal or Toress Strait Islander</label>
+                        <select id="status" name="status" class="form-select">
+                            <option value="All">All</option>
+                            <option value="Yes">Yes</option>
+                            <option value="Prefer not to say">Prefer not to say</option>
+                        </select>
+                </div>
+            </div>
+            <table class="studentstable" id="studentstable">
+                <tr>
+                    <th>PFP</th>
+                    <th>Name</th>
+                    <th>last-login</th>
+                    <th>edit</th>
+                    <th>Delete</th>
+                    <th>Pause</th>
+                </tr>
+                {% for student in students %}
+                <tr  class="studentlist" data-relocation="{{ student.relocation }}" 
+                data-uniname="{{ student.uniname }}" 
+                data-yearatuni="{{ student.year_of_study }}" 
+                data-industry="{% for x in student.industry_preference %}{{ x | lower }},{% endfor %}" 
+                data-ato="{{ student.ato }}" 
+                data-fname="{{ student.fname }}" 
+                data-lname="{{ student.lname }}" 
+                data-degree="{{ student.degree }}" 
+                data-pfp="{{ student.pfpfile }}" 
+                data-email="{{ student.email }}" 
+                data-phone="{{ student.phone }}"
+                data-city_work="{{ student.city_work }}"
+                data-skills="{{ student.skills }}"
+                data-certifications="{{ student.certifications }}"
+                data-linkedin="{{ student.linkedin }}"
+                data-resumefile="{{ student.resumefile }}"
+                data-student_id="{{ student.student_id }}"
+                data-status="{{ student.status }}"
+                data-last_login="{{ student.last_login }}"
+                >
+                    <td><img src="{{ url_for('static', filename='images/profilepics/' + student['pfpfile']) }}"></td>
+                    <td>{{ student.fname }} {{ student.lname }}</td>
+                    <td>{{ student.last_login }}</td>
+                    <td class="editstudent" ><img class="symbol" src="https://cdn3.iconfinder.com/data/icons/web-seo-development-glyph-v-1/100/Edit-1024.png" alt=""></td>
+                    <td class="deletestudent"><img class="symbol" src="https://th.bing.com/th/id/R.e20d9108427b28ea68e4a4ffcfd0a18e?rik=XQPQ9regwHLaNw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f6%2fDelete-Button-PNG-Picture.png&ehk=tkvNHfh%2f4tX3s%2bX1GA4X4M5CNIClD4Awh%2fJn%2bZCz%2fCA%3d&risl=&pid=ImgRaw&r=0" alt=""></td>
+                    {% if student.status == "active" %}
+                    <td><input type="checkbox" class="studentcheck" data-student_id="{{ student.student_id }}"></td>
+                    {% else %}
+                    <td>Account paused</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+            <button id="Pausepeople" disabled>Pause All</button>
+            <div class="flaggedpeople">
+                <table class="flaggedtable" id="flaggedstudent">
+                    <tr>
+                        <th>PFP</th>
+                        <th>Name</th>
+                        <th>last-login</th>
+                        <th>edit</th>
+                        <th>Delete</th>
+                        <th>Pause</th>
+                    </tr>
+                                
+                </table>
+            </div>
+        </div>
+        <div class="studentside">
+            <div class="studentsearch">
+                <input type="text" id="searchbarbus" placeholder="Type name..." >
+            </div>
+            <table class="studentstable"  id="businesstable">
+                <tr>
+                    <th>Business Name</th>
+                    <th>Last-Login</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                {% for business in businesses %}
+                <tr class="businesslist" data-bname="{{ business.bname }}" data-email="{{ business.email }}" data-industry="{{ business.industry }}" data-last_login="{{ business.last_login }}" data-location="{{ business.location }}" data-description="{{ business.description }}">
+                    <td>{{ business.bname }}</td>
+                    <td>{{ business.last_login }}</td>
+                    <td class="editbusiness" ><img class="symbol" src="https://cdn3.iconfinder.com/data/icons/web-seo-development-glyph-v-1/100/Edit-1024.png" alt=""></td>
+                    <td class="deletebusiness"><img class="symbol" src="https://th.bing.com/th/id/R.e20d9108427b28ea68e4a4ffcfd0a18e?rik=XQPQ9regwHLaNw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f6%2fDelete-Button-PNG-Picture.png&ehk=tkvNHfh%2f4tX3s%2bX1GA4X4M5CNIClD4Awh%2fJn%2bZCz%2fCA%3d&risl=&pid=ImgRaw&r=0" alt=""></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="flaggedpeople">
+                <table class="flaggedtable" id="flaggedbusiness">
+                    <tr>
+                        <th>Business Name</th>
+                        <th>Last-Login</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        // Select all checkboxes and the button
+        const checkboxes = document.querySelectorAll(".studentcheck");
+        const pauseButton = document.getElementById("Pausepeople");
+    
+        // Function to update the button's state
+        const updateButtonState = () => {
+            const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+            pauseButton.disabled = !anyChecked;
+        };
+    
+        // Attach change event listener to each checkbox
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener("change", updateButtonState);
+        });
+    
+        // Handle button click
+        pauseButton.addEventListener("click", () => {
+            const selectedStudents = Array.from(checkboxes)
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.getAttribute("data-student_id"));
+    
+            console.log("Selected Student IDs:", selectedStudents);
+
+            pause(selectedStudents)
+            location.reload();
+
+    
+            // Example action: Show alert (you can replace this with your logic)
+            function pause(student) {
+              fetch('/admin_pause_student', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(student),  // Send the student object as JSON
+              })
+            }
+        });
+    </script>
+    <script>
+        const scanbutton = document.getElementById("accountscan"); // Correct variable name
+        const businessRows = document.querySelectorAll(".businesslist"); // Select all rows
+        const flaggedbusiness = document.getElementById("flaggedbusiness"); // Select all rows
+
+        const studentRows = document.querySelectorAll(".studentlist"); // Select all rows
+        const flaggedstudent = document.getElementById("flaggedstudent"); // Select all rows
+    
+        scanbutton.addEventListener("click", function () {
+
+            // Loop through rows to find the selected one
+            businessRows.forEach(row => {
+                // Check if the row is selected or you could add a specific condition
+                const lastLogin = row.getAttribute("data-last_login"); // Get last_login value
+                const lastLoginDate = new Date(lastLogin);
+    
+                // Example math: Calculate days since last login
+                const currentDate = new Date();
+                const diffTime = Math.abs(currentDate - lastLoginDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                if(diffDays > 90){
+                    flaggedbusiness.appendChild(row);
+                }
+            });
+        });
+
+        scanbutton.addEventListener("click", function () {
+            // Loop through rows to find the selected one
+            studentRows.forEach(row => {
+                // Check if the row is selected or you could add a specific condition
+                const lastLogin = row.getAttribute("data-last_login"); // Get last_login value
+                const lastLoginDate = new Date(lastLogin);
+    
+                // Example math: Calculate days since last login
+                const currentDate = new Date();
+                const diffTime = Math.abs(currentDate - lastLoginDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                if(diffDays >= 90){
+                    flaggedstudent.appendChild(row);
+                }
+            });
+        });
+    </script>
+    <script>
+          document.addEventListener("DOMContentLoaded", function () {
+    // References to the input field and table rows
+    const searchInput = document.getElementById("searchbarbus");
+    const businessRows = document.querySelectorAll(".businesslist");
+
+    // Function to filter businesses
+    function filterBusinesses() {
+      const searchValue = searchInput.value.toLowerCase();
+
+      businessRows.forEach(row => {
+        const businessName = row.getAttribute("data-bname").toLowerCase();
+
+        // Show row if the business name matches the search value, otherwise hide it
+        if (businessName.includes(searchValue)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    // Event listener for filtering
+    searchInput.addEventListener("input", filterBusinesses);
+  });
+        // Wait for the DOM to fully load
+        document.addEventListener("DOMContentLoaded", function () {
+          // Select all edit buttons
+          const editButtons = document.querySelectorAll(".editbusiness");
+          const deletebuttons = document.querySelectorAll(".deletebusiness");
+      
+            const addbusiness = document.getElementById("editbusiness");
+            const cancelbusiness = document.getElementById("cancelbusiness1");
+
+            function handleNewBusinessClick() {
+                addbusiness.classList.add("active");
+            }
+
+            function closeformclick() {
+                addbusiness.classList.remove("active");
+            }
+
+            cancelbusiness.onclick = closeformclick;
+
+            editButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const businessRow = this.closest(".businesslist");
+
+                    const businessName = businessRow.getAttribute("data-bname");
+                    const businessemail = businessRow.getAttribute("data-email");
+                    const businessindustry = businessRow.getAttribute("data-industry");
+                    const businesslocation = businessRow.getAttribute("data-location");
+                    const businessdescription = businessRow.getAttribute("data-description");
+
+
+                    const bnamefeild = document.getElementById("bname1");
+                    const emailfeild = document.getElementById("email1");
+                    const industryfeild = document.getElementById("Industry1");
+                    const Locationfeild = document.getElementById("Location1");
+                    const Descriptionfeild = document.getElementById("Description1");
+
+                    bnamefeild.value = businessName;
+                    emailfeild.value = businessemail;
+                    industryfeild.value = businessindustry;
+                    Locationfeild.value = businesslocation;
+                    Descriptionfeild.value = businessdescription;
+
+
+
+                    handleNewBusinessClick();
+
+                });
+            });
+
+          deletebuttons.forEach(button => {
+                button.addEventListener("click", function () {
+              // Get the parent row (tr) of the clicked button
+              const businessRow = this.closest(".businesslist");
+      
+              // Extract the business name from the data-bname attribute
+              const businessName = businessRow.getAttribute("data-bname");
+              const businessemail = businessRow.getAttribute("data-email");
+
+              const nocancel1 = document.getElementById("nocancel1");
+                const deleteback1 = document.getElementById("deletebackbus");
+                const formvalue1 = document.getElementById("deletebus"); // Corrected the ID reference
+
+                formvalue1.value = businessemail; // Set the student_id in the hidden input
+
+                deleteback1.classList.add("active");
+
+                    // Hide the popup when cancel is clicked
+                nocancel1.onclick = function () {
+                deleteback1.classList.remove("active");
+                    };
+
+                    // Perform the deletion and close the modal when confirm is clicked
+                document.getElementById("deletenow1").onclick = function () {
+                deleteback1.classList.remove("active");
+                    };
+      
+              // Display an alert with the business name
+
+                });
+              });
+        });
+      </script>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+    // References to the input fields and table rows
+    const searchInput = document.getElementById("searchbar");
+    const accountStatus = document.querySelector("#status[name='status']");
+    const atoStatus = document.querySelectorAll("#status[name='status']")[1];
+    const studentRows = document.querySelectorAll(".studentlist");
+
+    // Function to filter students
+    function filterStudents() {
+      const searchValue = searchInput.value.toLowerCase();
+      const statusValue = accountStatus.value;
+      const atoValue = atoStatus.value;
+
+      studentRows.forEach(row => {
+        const fname = row.getAttribute("data-fname").toLowerCase();
+        const lname = row.getAttribute("data-lname").toLowerCase();
+        const fullName = `${fname} ${lname}`;
+        const accountStatus = row.getAttribute("data-status");
+        const atoStatus = row.getAttribute("data-ato");
+
+        let matchesSearch = fullName.includes(searchValue);
+        let matchesStatus = statusValue === "All" || accountStatus === statusValue;
+        let matchesAto = atoValue === "All" || atoStatus === atoValue;
+
+        // Show row if it matches all filters, otherwise hide it
+        if (matchesSearch && matchesStatus && matchesAto) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    // Event listeners for filtering
+    searchInput.addEventListener("input", filterStudents);
+    accountStatus.addEventListener("change", filterStudents);
+    atoStatus.addEventListener("change", filterStudents);
+  });
+            // Wait for the DOM to fully load
+            document.addEventListener("DOMContentLoaded", function () {
+              // Select all edit buttons
+              const editButtons = document.querySelectorAll(".editstudent");
+              const deletebuttons = document.querySelectorAll(".deletestudent");
+
+          
+              // Attach click event listeners to each button
+              editButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                  // Get the parent row (tr) of the clicked button
+                  const studentRow = this.closest(".studentlist");
+          
+                  // Extract the business name from the data-bname attribute
+                  const studentName = studentRow.getAttribute("data-fname");
+                  const student_id = studentRow.getAttribute("data-student_id");
+
+                  window.location.href = `/admin_edit_student?student_id=${student_id}`;
+          
+                  // Display an alert with the business nam
+                              // Function to save student data by sending it to the server
+                });
+              });
+
+              deletebuttons.forEach(button => {
+                button.addEventListener("click", function () {
+                    // Get the parent row (tr) of the clicked button
+                    const studentRow = this.closest(".studentlist");
+                    
+                    // Extract the student name and student_id from the data attributes
+                    const studentName = studentRow.getAttribute("data-fname");
+                    const student_id = studentRow.getAttribute("data-student_id"); // Correctly access data-student_id
+
+                    const nocancel = document.getElementById("nocancel");
+                    const deleteback = document.getElementById("deleteback");
+                    const formvalue = document.getElementById("deletestud"); // Corrected the ID reference
+
+                    formvalue.value = student_id; // Set the student_id in the hidden input
+
+                    deleteback.classList.add("active");
+
+                    // Hide the popup when cancel is clicked
+                    nocancel.onclick = function () {
+                    deleteback.classList.remove("active");
+                    };
+
+                    // Perform the deletion and close the modal when confirm is clicked
+                    document.getElementById("deletenow").onclick = function () {
+                    deleteback.classList.remove("active");
+                    };
+                });
+                });
+            });
+          </script>
+    <div id="addbusiness" class="">
+        <form class="businessform" action="/admin_add_business" method="post">
+            <div class="businesstitle">
+                <h3>Add a business</h3>
+                <p id="cancelbusiness">X</p>
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Business Name</label>
+                <input type="text" class="form-control" id="bname"name="bname">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Industry</label>
+                <input type="text" class="form-control" id="Industry"name="industry">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Location</label>
+                <input type="text" class="form-control" id="Location"name="Location">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" id="Description" rows="3" name="Description"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="editbusiness" class="">
+        <form class="businessform" action="/admin_edit_business" method="post">
+            <div class="businesstitle">
+                <h3>Edit a business</h3>
+                <p id="cancelbusiness1">X</p>
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Business Name</label>
+                <input type="text" class="form-control" id="bname1"name="bname">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email1" aria-describedby="emailHelp" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Industry</label>
+                <input type="text" class="form-control" id="Industry1"name="industry">
+            </div>
+            <div class="mb-3">
+                <label for="formGroupExampleInput" class="form-label">Location</label>
+                <input type="text" class="form-control" id="Location1"name="Location">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" id="Description1" rows="3" name="Description"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const newbusinessbut = document.getElementById("newbusiness");
+            const addbusiness = document.getElementById("addbusiness");
+            const cancelbusiness = document.getElementById("cancelbusiness");
+    
+            function handleNewBusinessClick() {
+                addbusiness.classList.add("active");
+            }
+
+            function closeformclick(){
+                addbusiness.classList.remove("active")
+            }
+    
+            newbusinessbut.onclick = handleNewBusinessClick;
+            cancelbusiness.onclick = closeformclick;
+        });
+    </script>
+
+    <div id="deleteback">
+        <form action="/admin_delete_student" method="post" class="deleteconfirm">
+            <h4>Are you sure you want to delete this student?</h4>
+            <input type="hidden" name="student_id" id="deletestud">
+            <div class="deletebuttons1">
+                <button type="submit" id="deletenow">Confirm</button>
+                <button type="button" id="nocancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="deletebackbus">
+        <form action="/admin_delete_business" method="post" class="deleteconfirm">
+            <h4>Are you sure you want to delete this Business?</h4>
+            <input type="hidden" name="busemail" id="deletebus">
+            <div class="deletebuttons1">
+                <button type="submit" id="deletenow1">Confirm</button>
+                <button type="button" id="nocancel1">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <script>
+
+    </script>
+
+</body>
+</html>

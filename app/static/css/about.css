@@ -1,0 +1,154 @@
+.overall {
+    background-image: url("../images/dashboard.png");
+    background-position: center;
+    background-size: cover;
+    display: flex; /* Enables flexbox */
+    align-items: center; /* Centers vertically */
+    justify-content: center; /* Centers horizontally */
+    min-height: 80vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+.aboutsection{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.logosection{
+    width: 30%;
+    margin-left: 20px;
+}
+.writing{
+    width: 70%;
+    margin-right: 20px;
+}
+.writing h3{
+    font-size: 45px;
+    color: rgb(41, 46, 70);
+}
+.writing p{
+    font-size: 25px
+}
+.aboutsection img{
+    width: 100%;
+}
+.becomepart{
+    width: 70%;
+    align-items: center;
+    margin: auto;
+    margin-top: 50px;
+}
+.becomepart h3{
+    font-size: 45px;
+    color: rgb(41, 46, 70);
+}
+.becomepart p{
+    font-size: 25px
+}
+.becomepart button{
+    width: 30%;
+    height: 7vh;
+    border-radius: 30px;
+    border: none;
+    background-color:  rgb(41, 46, 70);
+    color: white;
+    transition: background 0.3s ease;
+}
+
+.uptop{
+    min-height: 45vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: rgb(41, 46, 70);
+    text-align: center;
+}
+h1{
+    font-size: 90px;
+    color: white;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+@media (max-width: 1300px) {
+    h1{
+        font-size: 50px;
+    }
+    .becomepart h3{
+        font-size: 35px;
+    }
+    .becomepart p{
+        font-size: 20px
+    }
+    .writing h3{
+        font-size: 35px;
+    }
+    .writing p{
+        font-size: 20px
+    }
+    
+}
+
+@media (max-width: 1200px) {
+    h1{
+        font-size: 50px;
+    }
+    .becomepart h3{
+        font-size: 25px;
+    }
+    .becomepart p{
+        font-size: 15px
+    }
+    .writing h3{
+        font-size: 25px;
+    }
+    .writing p{
+        font-size: 15px
+    }
+    
+}
+
+@media (max-width: 1000px) {
+    .aboutsection img{
+        width: 100%;
+    }
+    .overall{
+        padding-top: 10px;
+    }
+
+    .aboutsection{
+        flex-direction: column-reverse;
+        padding-top: 30px;
+    }
+    .logoimage{
+        width: 30%;
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+    .writing{
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .becomepart h3{
+        font-size: 25px;
+    }
+    .becomepart p{
+        font-size: 15px
+    }
+    .writing h3{
+        font-size: 25px;
+    }
+    .writing p{
+        font-size: 15px
+    }
+    .becomepart button{
+        width: 50%;
+}}

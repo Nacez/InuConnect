@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Searcher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{{ url_for('static', filename='images/inu_logo_short.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jobsearchercss.css') }}"> <!-- Link to an external CSS file -->
+</head>
+<body>
+    <div>
+        <div class="bar">
+            <div class="logo"><img src="{{ url_for('static', filename='images/inu_logo_long.png') }}" alt="InuConnect"></div>
+            <div class="name">
+                <a href="/student_dashboard">Go to your dashboard</a>
+            </div>
+        </div>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+        {% for category, message in messages %}
+          <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+    <div class="bodyholder">
+        <div class="heading123">
+        <h1>Job Searcher</h1>
+        <p class="lead">Find your next placement here! If you like what you see click and apply!</p>
+        </div>
+        <div class="Jobboard">
+            {% for post in jobposts %}
+            
+            <div class = "JobCard" data-postid="{{ post.post_id}}">
+                <h6 class="lead"><strong>{{ post.title }}</strong></h6>
+                <p class="smaller"><small>{{ post.location }}</small></p>
+                <p class="smaller"><small>{{ post.industry }}</small></p>
+                <p class="descbig">{{ post.description }}</p>
+                <p class="fw-medium">{{ post.business }}</heavy></p>
+                <p class="smaller"><small>{{ post.date }}</small></p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div id="outputform">
+        <form method="POST" id="outputforminner">
+            <p class="lead">Your applying for:</p>
+            <h3 id="Internshipname">Tester Internship</h3>
+            <p id="Internshiplocation"></p>
+            <p id="Internshipbusiness" class="fw-medium"></p>
+            <input type="hidden" id="postid" name="postid">
+
+            <div class="row">
+                <div class="col">
+                <label for="Fname" class="form-label">First name:</label>
+                <input type="text" class="form-control" aria-label="First name" id="Fname" name="fname" required>
+                </div>
+                <div class="col">
+                  <label for="lanme" class="form-label">Last name:</label>
+                  <input type="text" class="form-control" aria-label="Last name" id="Lname" name="lname" required>
+                </div>
+              </div>
+            <div class="mb-3">
+                <label for="whyYouLike" class="form-label">Why you would like this role:</label>
+                <textarea class="form-control" id="whyYouLike" rows="3" name="desc" required></textarea>
+            </div>
+            <button type="submit" id="submitform">Submit</button>
+            <button type="button" id="cancel" onclick="close()">Cancel</button>
+        </form>
+    </div>
+
+    <script>
+        const clickableDivs = document.querySelectorAll('.JobCard');
+
+        // Select the output element
+        const output = document.getElementById('outputform');
+        const cancel = document.getElementById('cancel');
+        const postidInput = document.getElementById('postid');
+
+        cancel.addEventListener("click", () => {
+        output.classList.remove("active");
+        });
+
+        // Add click event listener to each div
+        clickableDivs.forEach(jobCard => {
+        jobCard.addEventListener('click', () => {
+            // Get the content of the clicked div
+            const content = jobCard.textContent;
+            const postId = jobCard.getAttribute('data-postid');
+            const name = document.getElementById('Internshipname');
+            const businessname1 = document.getElementById('Internshipbusiness');
+            const location1 = document.getElementById('Internshiplocation');
+
+            const jobTitle = jobCard.querySelector('h6.lead').textContent;
+            const location = jobCard.querySelector('p').textContent;
+            const description = jobCard.querySelectorAll('p')[1].textContent; // Second <p> element
+            const businessname = jobCard.querySelectorAll('p')[2].textContent; // Second <p> element
+            const datePosted = jobCard.querySelector('p small').textContent;
+
+            // Display the content in the output element
+            output.classList.add("active");
+            name.textContent = `${jobTitle}`
+            location1.textContent = location
+            businessname1.textContent = businessname
+
+            postidInput.value = postId;
+        });
+        });
+    </script>
+</body>
+</html>

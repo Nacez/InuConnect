@@ -1,0 +1,197 @@
+.bar{
+    width: 100%;
+    padding: 20px;
+    border-bottom: 2px solid;
+    border-color: rgb(196, 196, 196);
+    display: flex;
+}
+.bar img{
+    width: 20%;
+}
+
+.name{
+    width: 50%;
+    justify-items: right;
+    align-items: center; 
+}
+.name p{
+    width:fit-content;
+    margin-top: 10px;
+    margin-right: 0px;
+}
+.editword{
+    width: 10%;
+    justify-items: right;
+    align-items: center; 
+}
+.editword p{
+    width:fit-content;
+    margin-top: 10px;
+    margin-right: 30px;
+}
+
+.outer{
+    padding: 40px;
+    padding-left: 70px;
+    padding-right: 70px;
+    display: flex;
+}
+.inner-left{
+    width: 30%;
+    padding-right: 20px;
+}
+.inner_text{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.inner_text h4{
+    margin-top: 0;
+}
+.inner-left img{
+    width: 270px;
+    object-fit: cover; /* Ensures the image is clipped rather than squished */
+    overflow: hidden; /* Hides any overflowing parts of the image */
+    display: block;
+    height: 270px;
+}
+.logout{
+    margin-top: 10px;
+    width: 30px;
+
+    
+}
+.logout img{
+    width:100%;
+}
+#logoutpop {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 40px;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+    position: absolute;
+    top: 50%; /* Position from the top */
+    left: 50%; /* Position from the left */
+    transform: translate(-50%, -50%); /* Move it back by half its width and height */
+    z-index: 1;
+    background: white; /* Optional: Add background color */
+
+    opacity: 0; /* Start as fully transparent */
+    visibility: hidden; /* Start as hidden */
+}
+#logoutpop.active{
+
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Make it visible */
+}
+
+#logoutpop img{
+    width: 10%;
+    margin: auto;
+    margin-bottom: 25px;
+}
+#logoutpop button{
+    border: none;
+    border-radius: 30px;
+    height: 70px;
+    width: 200px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.logoutbuttons{
+    display: flex;
+}
+#cancel{
+    background-color: rgb(52, 52, 73);
+    color: white;
+    transition: background 0.3s ease;
+}
+#logout{
+    background-color: rgb(104, 12, 12);
+    color: white;
+    transition: background 0.3s ease;
+}
+#cancel:hover{
+    background-color:  rgb(34, 34, 46);
+}
+
+#logout:hover{
+    background-color:  rgb(66, 8, 8);
+}
+.introduction{
+    margin-bottom: 60px;
+}
+.personal{
+    border-top: 2px dotted grey;
+    margin-top: 60px;
+    padding-top: 30px;
+}
+.personal table{
+    width: 100%;
+    padding: 25px;
+}
+.personal td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.inner-right{
+    width: 40%
+}
+.edit{
+    margin-top: 10px;
+    width: 30px; 
+    margin-right: 20px; 
+}
+.edit img{
+    width:100%;
+}
+.farright{
+    margin-top: 1%;;
+}
+.heading12{
+    padding-top: 30px;
+    display: flex;
+    margin-left: 75px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgb(202, 202, 202);
+    width: 70%;
+
+}
+.heading12 p{
+    margin-top: 13px;
+    height: fit-content;
+}
+.heading12 div{
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-right: 5px;
+}
+#activeornot{
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+}
+.overall{
+    background-image: url("/static/images/dashboard.png");
+    background-position: center;
+    background-size: cover;
+}
+#myChart {
+    width: 500px; /* Fixed width */
+    height: 300px; /* Fixed height */
+    margin: 0 auto; /* Center the canvas horizontally */
+    display: block; /* Ensures margin works properly */
+}
+#jobfinderbut{
+    padding: 15px;
+    margin-left: 75px;
+    border: none;
+    border-radius: 15px;
+    width: 300px;
+    background-color: rgb(30, 51, 70);
+    color: white;
+
+}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block maybe %}<div class="first_section">{% endblock %}
+{% block content %}
+
+        <div class="home_box">
+            <h1 class="heading_home">Welcome to I&U Connect</h1>
+            <p class="updesc">
+              I&U Connect connects university students with paid internships at partnering organizations, offering them valuable industry experience in their chosen fields.
+            </p>
+            <div class="d-grid gap-2">
+                <button class="homebutton" onclick="location.href='/student_signup'">Sign Up as a Student</button>
+                <button class="homebutton" type="button" onclick="location.href='/business_contact'">Sign Up as an Employer</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="second_section">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="card_hang">
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Connecting University To Industry</h5>
+                  <p class="card-text">We bridge the gap between university and industry by providing students with real-world work experience through paid internship oppurtunities. Our platform helps students gain valuable skills, build connections, and transition into full-time careers.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-body-secondary">Our internal goals</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Connecting Industry To University</h5>
+                  <p class="card-text">We help businesses connect with talented university students through paid internships, providing a pipeline of skilled future employees. Our platform enables companies to nurture and recruit top talent while supporting students in gaining real-world experience.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-body-secondary">Our internal goals</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">Building A Youthful Workforce</h5>
+                  <p class="card-text">We help businesses build a skilled and diverse workforce by connecting them with university students through paid internships. This allows companies to develop young talent, foster innovation, and secure future industry leaders.</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-body-secondary">Our internal goals</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+    <div class = "inner_section_right">
+        <div class="text_inside">
+            <h3>Created by a Student, for Students</h3>
+            <p>I&U Connect was founded with firsthand understanding of the challenges university students face when seeking meaningful industry experience. As a business created by a university student, we are committed to bridging the gap between education and employment by providing paid, multi-year internships that set students up for long-term success. Our platform is designed with students in mind.</p>
+            <button onclick="location.href='/about'">Learn More</button>
+        </div>
+        <div class="img_inside">
+            <img src="{{ url_for('static', filename='images/unistudents.png') }}">
+        </div>
+    </div>
+
+    <div class = "inner_section_left">
+        <div class="text_inside">
+            <h3>Become a Partner</h3>
+            <p>Join us in shaping the future of Australia’s workforce. At I&U Connect, we partner with forward-thinking organizations committed to providing university students with meaningful, paid internships that lead to lasting career opportunities. By becoming a partner, you’ll help nurture the next generation of professionals while gaining access to talented students ready to make an impact. If your organization shares our vision, register your interest today!</p>
+            <button onclick="location.href='/business_contact'">Start Now</button>
+          </div>
+        <div class="img_inside">
+            <img src="{{ url_for('static', filename='images/partners.png') }}">
+        </div>
+    </div>
+
+    </div>
+
+    {% endblock %}
