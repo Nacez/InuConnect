@@ -8,7 +8,7 @@ def create_app():
     app = Flask(__name__)
 
     # Configure MongoDB URI
-    app.config["MONGO_URI"] = mongodb+srv://kyej2005:I7OSPUvbx38wth2jd@inuconnectcluster.smivt.mongodb.net/
+    app.config["MONGO_URI"] = "mongodb+srv://kyej2005:I7OSPUvbx38wth2jd@inuconnectcluster.smivt.mongodb.net/?retryWrites=true&w=majority&appName=InuConnectCluster"
     MAX_CONTENT_LENGTH = 5 * 1024 * 1024  # 5 MB limit
 
     app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
