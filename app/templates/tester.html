@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filterable List with Multiple Categories</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .filter-container {
+      margin-bottom: 20px;
+    }
+    .filter-container select {
+      margin-right: 10px;
+      padding: 5px;
+    }
+    .item-list {
+      list-style: none;
+      padding: 0;
+    }
+    .item {
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Filterable List with Multiple Categories</h1>
+  
+  <div class="filter-container">
+    <label for="owners">Previous Owners:</label>
+    <select id="owners">
+      <option value="all">All</option>
+      <option value="greg">Greg</option>
+      <option value="paul">Paul</option>
+      <option value="julia">Julia</option>
+    </select>
+  </div>
+  
+  <ul class="item-list" id="itemList">
+    <li class="item" data-owners="greg,paul">Apple</li>
+    <li class="item" data-owners="julia">Carrot</li>
+    <li class="item" data-owners="paul">Cheese</li>
+    <li class="item" data-owners="greg,julia,">Banana</li>
+    <li class="item" data-owners="greg">Lettuce</li>
+  </ul>
+  
+  <script>
+    const ownersFilter = document.getElementById('owners');
+    const itemList = document.getElementById('itemList');
+
+    function filterItems() {
+      const ownerValue = ownersFilter.value;
+
+      Array.from(itemList.children).forEach(item => {
+        const itemOwners = item.getAttribute('data-owners').split(',');
+
+        // Check if the selected owner is in the item's owners list
+        const matchesOwner = ownerValue === 'all' || itemOwners.includes(ownerValue);
+
+        // Show or hide the item based on the filters
+        item.style.display = matchesOwner ? '' : 'none';
+      });
+    }
+
+    // Add event listener to the dropdown
+    ownersFilter.addEventListener('change', filterItems);
+  </script>
+</body>
+</html>

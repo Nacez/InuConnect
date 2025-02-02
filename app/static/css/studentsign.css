@@ -1,0 +1,173 @@
+body {
+    content: "";
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("https://images.pexels.com/photos/1438072/pexels-photo-1438072.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1; /* Makes sure it stays behind the content */
+}
+
+.formdiv{
+    margin: auto;
+    padding: 35px;
+    width: 80%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-image: url("https://img.freepik.com/premium-vector/modern-simple-minimal-white-abstract-modern-background-design_249611-5955.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+h1{
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+form div{
+    margin-bottom: 15px;
+}
+
+#inserthere{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #007bff; /* Stylish blue for modern browsers */
+}
+
+#inserthere label{
+    margin-right: 50px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+.dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.dropdown input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-top: none;
+    background: white;
+    z-index: 1000;
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-menu label {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu label:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-menu input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#deleteback{
+    display: none;
+    transition: 0.3s ease;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.247);
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  #deleteback.active{
+    display: flex;
+  }
+  .deleteconfirm{
+    width: 20%;
+    display: block;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: none;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+  }
+  .deleteconfirm p{
+    font-size: 25px;
+    font-weight:lighter ;
+  }
+  .deletebuttons1{
+    display: flex;
+  }
+  .deleteconfirm button{
+    width: 100%;
+    border: none;
+    margin-left: 5px;
+    margin-left: 5px;
+    border-radius: 20px;
+    height: 50px;
+  }
+  #deletenow{
+    background-color: rgb(146, 44, 44);
+    color: white;
+  }
+  #nocancel{
+    background-color: rgb(57, 53, 94);
+    color: white;
+  }
+#deleteaccount{
+    display: inline;
+    border: none;
+    border-radius: 20px;
+    height: 40px;
+    width: 150px;
+    background-color: #8d041b;
+    color: white;
+}
+#submitedit{
+    border: none;
+    border-radius: 30px;
+    height: 50px;
+    width: 100%;
+    background-color: #2d324d;
+    color: white;
+}

@@ -1,0 +1,344 @@
+{% extends "base.html" %}
+
+{% block title %}Student Sign-up{% endblock %}
+{% block style%}<link rel="stylesheet" href="{{ url_for('static', filename='css/studentsign.css') }}">{% endblock %}
+
+{% block content %}
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+        {% for category, message in messages %}
+          <li class="alert alert-{{ category }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+    <div class="formdiv">
+
+        <form method="post" enctype="multipart/form-data">
+            <h1> Sign-up as student</h1>
+            
+            <p style="color: red"> The email you used used already has an account <a href="/student_login">Login here</a></p>
+
+            <div class="row">
+                <div class="col">
+                <label for="Fname" class="form-label">First Name</label>
+                <input type="text" class="form-control" placeholder="First name" id="Fname" name="fname" required>
+                </div>
+                <div class="col">
+                    <label for="Lname" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" placeholder="Last name" aria-label="Last name" id="Lname" name="Lname" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Upload a Profile Picture</label>
+                <p><small>Please make sure the photo is respectful and of you.</small></p>
+                <input type="file" name="pfpfile" accept="image/*" class="form-control" required></div>
+
+                <div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Upload your resume</label>
+                    <p><small>your resume MUST be a pdf.</small></p>
+                    <input type="file" name="resumefile" accept="application/pdf" class="form-control">
+                </div>
+
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" name="email" required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input type="password" class="form-control" id="inputPassword4" name="password" required>
+                <div id="passwordError" style="color: red;"></div>
+            </div>
+            <div class="col-12">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="number" class="form-control" id="inputAddress" placeholder="0412 345 678" name="phone" required>
+            </div>
+            
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address" required>
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="inputCity" name="city" required>
+            </div>
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">State</label>
+                <select id="inputState" class="form-select" name="state" required>
+                <option selected>NSW</option>
+                <option value="QLD">QLD</option>
+                <option value="WA">WA</option>
+                <option value="SA">SA</option>
+                <option value="TAS">TAS</option>
+                <option value="NT">NT</option>
+                <option value="VIC">VIC</option>
+                <option value="ACT">ACT</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Zip/ Postcode</label>
+                <input type="text" class="form-control" id="inputZip" name="zip" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="ATO" class="form-label">Are you Aboriginal or Torres Strait Islander</label>
+                <select class="form-select" id="ATO" name="ATO" required>
+                <option selected value="Prefer not to say">Prefer not to say</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="universityName" class="form-label">University Name</label>
+                <select class="form-select" id="universityName" name="uniname" required>
+                {% for uni in unis %}
+                <option value="{{ uni }}">{{ uni }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            
+            <!-- Degree -->
+            <div class="mb-3">
+                <label for="degree" class="form-label">Degree</label>
+                <input type="text" class="form-control" id="degree" placeholder="Enter your degree (e.g., Bachelor of Engineering)" name="degree" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="yearOfStudy" class="form-label">Year of Study</label>
+                <select class="form-select" id="yearOfStudy" name="yearffstudy" required>
+                <option selected value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Fourth Year</option>
+                </select>
+            </div>
+            <!-- Year of Study -->
+            <div class="mb-3">
+                <label for="yearOfStudy" class="form-label">City Preference (To work in)</label>
+                <p><small>Bigger cities my allow for more opputunities</small></p>
+                <select class="form-select" id="yearOfStudy" name="citywork" required>
+                    <option value="Adelaide">Adelaide (recommended)</option>
+                    <option value="Albany">Albany</option>
+                    <option value="Albury">Albury</option>
+                    <option value="Alice Springs">Alice Springs</option>
+                    <option value="Armidale">Armidale</option>
+                    <option value="Ballarat">Ballarat</option>
+                    <option value="Bathurst">Bathurst</option>
+                    <option value="Bendigo">Bendigo</option>
+                    <option value="Brisbane">Brisbane (recommended)</option>
+                    <option value="Broken Hill">Broken Hill</option>
+                    <option value="Bundaberg">Bundaberg</option>
+                    <option value="Burnie">Burnie</option>
+                    <option value="Bunbury">Bunbury</option>
+                    <option value="Busselton">Busselton</option>
+                    <option value="Cairns">Cairns</option>
+                    <option value="Canberra">Canberra (recommended)</option>
+                    <option value="Coffs Harbour">Coffs Harbour</option>
+                    <option value="Darwin">Darwin (recommended)</option>
+                    <option value="Devonport">Devonport</option>
+                    <option value="Dubbo">Dubbo</option>
+                    <option value="Geelong">Geelong</option>
+                    <option value="Geraldton">Geraldton</option>
+                    <option value="Gladstone">Gladstone</option>
+                    <option value="Gold Coast">Gold Coast (recommended)</option>
+                    <option value="Goulburn">Goulburn</option>
+                    <option value="Hervey Bay">Hervey Bay</option>
+                    <option value="Hobart">Hobart</option>
+                    <option value="Horsham">Horsham</option>
+                    <option value="Kalgoorlie">Kalgoorlie</option>
+                    <option value="Karratha">Karratha</option>
+                    <option value="Katherine">Katherine</option>
+                    <option value="Launceston">Launceston</option>
+                    <option value="Lismore">Lismore</option>
+                    <option value="Mackay">Mackay</option>
+                    <option value="Mandurah">Mandurah</option>
+                    <option value="Melbourne">Melbourne</option>
+                    <option value="Mildura">Mildura</option>
+                    <option value="Mount Gambier">Mount Gambier</option>
+                    <option value="Mount Isa">Mount Isa</option>
+                    <option value="Murray Bridge">Murray Bridge</option>
+                    <option value="Nhulunbuy">Nhulunbuy</option>
+                    <option value="Newcastle">Newcastle</option>
+                    <option value="Orange">Orange</option>
+                    <option value="Perth">Perth (recommended)</option>
+                    <option value="Port Augusta">Port Augusta</option>
+                    <option value="Port Hedland">Port Hedland</option>
+                    <option value="Port Lincoln">Port Lincoln</option>
+                    <option value="Port Macquarie">Port Macquarie</option>
+                    <option value="Rockhampton">Rockhampton</option>
+                    <option value="Shepparton">Shepparton</option>
+                    <option value="Sunshine Coast">Sunshine Coast</option>
+                    <option value="Sydney">Sydney (recommended)</option>
+                    <option value="Tamworth">Tamworth</option>
+                    <option value="Tennant Creek">Tennant Creek</option>
+                    <option value="Toowoomba">Toowoomba</option>
+                    <option value="Townsville">Townsville</option>
+                    <option value="Wagga Wagga">Wagga Wagga</option>
+                    <option value="Wangaratta">Wangaratta</option>
+                    <option value="Warrnambool">Warrnambool</option>
+                    <option value="Whyalla">Whyalla</option>
+                    <option value="Wodonga">Wodonga</option>
+                    <option value="Wollongong">Wollongong</option>
+                    
+                    
+                </select>
+            </div>
+            <div class="col-12">
+                <label class="form-check-label" for="gridCheck">Are you open to relocate for work?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="gridCheckYes" value="yes" name="relocation" checked>
+                    <label class="form-check-label" for="gridCheckYes">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="gridCheckNo" value="no" name="relocation">
+                    <label class="form-check-label" for="gridCheckNo">No</label>
+            </div></div>
+            
+            <div class="dropdown">
+                <label for="industryPreference" class="form-label">Industry Preferences</label>
+                <p><small>You can only select a max of 5</small></p>
+                <input type="text" placeholder="Search industries..." oninput="filterDropdown()">
+                <div class="dropdown-menu" id="dropdownMenu">
+                    {% for work in Industry %}
+                    <label><input type="checkbox" name="industryPreference[]" value="{{ work }}"> {{ work }}</label>
+                    {% endfor %}
+                    
+                    
+                </div>
+            </div>
+            
+            <!-- Top Skills -->
+            <div class="mb-3">
+                <label for="topSkills" class="form-label">Top Skills</label>
+                <input type="text" class="form-control" id="topSkills" placeholder="List your top skills (e.g., Python, Data Analysis)" name="skills" required>
+            </div>
+            
+            <!-- Certifications -->
+            <div class="mb-3">
+                <label for="certifications" class="form-label">Certifications</label>
+                <input type="text" class="form-control" id="certifications" placeholder="Enter your certifications (e.g., AWS Certified)" name="certifications">
+            </div>
+            
+            <!-- LinkedIn Link -->
+            <div class="mb-3">
+                <label for="linkedinLink" class="form-label">LinkedIn Profile Link</label>
+                <input type="url" class="form-control" id="linkedinLink" placeholder="Enter your LinkedIn profile URL" name="linkedin">
+            </div>
+            
+            <!-- Submit Button -->
+
+            <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById("inputPassword4").addEventListener("input", function() {
+            var password = this.value;
+            var errorMessage = "";
+        
+            // Check for minimum requirements
+            if (!/[A-Z]/.test(password)) {
+                errorMessage = "Password must contain at least one uppercase letter.";
+            } else if (!/[0-9]/.test(password)) {
+                errorMessage = "Password must contain at least one number.";
+            } else if (password.length < 8) {
+                errorMessage = "Password cannot be less then 8 characters.";
+            }
+        
+            // Display error if conditions aren't met
+            if (errorMessage) {
+                document.getElementById("passwordError").textContent = errorMessage;
+                // Disable the submit button if password is invalid
+                document.getElementById("submitBtn").disabled = true;
+            } else {
+                document.getElementById("passwordError").textContent = "";
+                // Enable the submit button if password is valid
+                document.getElementById("submitBtn").disabled = false;
+            }
+        });
+        
+        // Optional: Disable form submission directly if the password is invalid when form is submitted
+        document.querySelector("form").addEventListener("submit", function(event) {
+            var password = document.getElementById("inputPassword4").value;
+            var errorMessage = "";
+        
+            if (!/[A-Z]/.test(password)) {
+                errorMessage = "Password must contain at least one uppercase letter.";
+            } else if (!/[0-9]/.test(password)) {
+                errorMessage = "Password must contain at least one number.";
+            } else if (password.length < 8) {
+                errorMessage = "Password cannot be less then 8 characters.";
+            }
+        
+            if (errorMessage) {
+                event.preventDefault();  // Prevent form submission
+                document.getElementById("passwordError").textContent = errorMessage;
+            }
+        });
+        </script>
+        
+        
+        
+    <script>
+        function limitCheckboxes() {
+            const checkboxes = document.querySelectorAll('.limit-checkbox');
+            const maxAllowed = 5;
+            let checkedCount = 0;
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) checkedCount++;
+            });
+
+            if (checkedCount > maxAllowed) {
+                alert(`You can only select up to ${maxAllowed} options.`);
+                event.target.checked = false;
+            }
+        }
+    </script>
+    <script>
+        const dropdown = document.querySelector('.dropdown input[type="text"]');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const checkboxes = dropdownMenu.querySelectorAll('input[type="checkbox"]');
+        const MAX_SELECTION = 5;
+
+        // Toggle dropdown menu on input click
+        dropdown.addEventListener('focus', () => {
+            dropdownMenu.classList.add('show');
+        });
+
+        // Filter dropdown options based on input
+        function filterDropdown() {
+            const filter = dropdown.value.toLowerCase();
+            const labels = dropdownMenu.querySelectorAll('label');
+            labels.forEach(label => {
+                const text = label.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    label.style.display = '';
+                } else {
+                    label.style.display = 'none';
+                }
+            });
+        }
+
+        // Limit maximum selections
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+                if (checkedCount > MAX_SELECTION) {
+                    alert(`You can select a maximum of ${MAX_SELECTION} options.`);
+                    checkbox.checked = false; // Uncheck the last selection
+                }
+            });
+        });
+
+        // Close dropdown menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!document.querySelector('.dropdown').contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,389 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.first_section {
+    background-image: url("../images/uniback.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+nav.navbar {
+    background-color: rgb(41, 46, 70) !important;
+    color: white !important;
+}
+nav.navbar a{
+    color: white !important;
+}
+
+.home_box {
+    max-width: 30%;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+.updesc{
+    font-size: 20px;
+}
+.home_box button {
+    max-width: 60%;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    display: block;
+
+}
+
+.second_section {
+    padding-left: 5%;
+    padding-right: 5%;
+    position: relative; /* So the background does not get affected by the negative margin */
+}
+
+.second_section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../images/dashboard.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1; /* Makes sure it stays behind the content */
+}
+
+#card_hang {
+    position: relative;
+    z-index: 1; /* Keeps this content above the background image */
+    margin-top: -100px; /* Moves the card up */
+}
+
+.blockquote {
+    margin-top: 50px;
+}
+.footer {
+    background-color: rgb(41, 46, 70);
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left {
+    font-size: 16px;
+    color: #ffffff;
+}
+
+.footer-right .footer-sitemap {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+    
+}
+
+.footer-right .footer-sitemap li {
+    display: block;
+    margin-left: 20px;
+}
+
+.footer-right .footer-sitemap a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+}
+
+.footer-right .footer-sitemap a:hover {
+    text-decoration: underline;
+}
+
+.inner_section_right {
+    max-width: 75%;
+    margin: auto;
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center;     /* Centers content vertically */
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+.inner_section_left {
+    max-width: 75%;
+    margin: auto;
+    display: flex;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center;     /* Centers content vertically */
+    flex-direction: row-reverse; /* Moves the image to the right side */
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.text_inside {
+    padding: 25px;
+    width: 50%;
+}
+.text_inside button{
+    width: 150px;
+    background-color: rgb(36, 40, 70);
+    transition: background 0.2s ease;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+}
+.img_inside {
+    padding: 25px;
+    display: flex;         /* Optional: to make sure the image is treated like a block-level element */
+    justify-content: center; /* Optional: centers the image horizontally */
+    width: 50%;
+}
+
+.img_inside img {
+    width: 80%;
+    max-width: 100%;        /* Ensures image doesn't stretch beyond its container */
+}
+
+.heading_home{
+    text-align: left;
+    color:  rgb(41, 46, 70);
+}
+
+.homebutton{
+    width: 100%;
+    height: 60px;
+    padding: 50px;
+    border-radius: 30px;
+    border: none;
+    background-color: rgb(41, 46, 70);
+    color: white;
+    transition: background 0.3s ease;
+}
+.homebutton:hover{
+    background-color: rgb(35, 34, 48); 
+}
+nav {
+    background-color: rgb(41, 46, 70);    
+}
+.newNav{
+    width: 100%;
+    padding: 0;
+    display: flex;
+    background-color: rgb(41, 46, 70); 
+}
+.Holder{
+    display: flex;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+}
+.Holder img{
+    width: 300px;
+}
+.Holder div{
+    height: 100%;
+    padding: 0px;
+}
+.linksbut{
+    display: flex;
+    width: fit-content;
+    margin-left: auto;
+}
+.linksbut ul{
+    display: flex;
+    padding: 0px;
+    height: 100%;
+    margin-right: 20px;
+}
+.linksbut li{
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.linksbut a{
+    color: white;
+    text-decoration: none;
+}
+.linksbut button{
+    width: 150px;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background-color: #ffffff;
+    transition: all ease 0.3s;
+}
+.linksbut button:hover{
+    background-color: #656888;
+    color: white;
+}
+.logoplace{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+#menuicon{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    display: none;
+    align-self: center;
+    margin-right: 20px;
+
+}
+#openmenu{
+    background-color: rgb(41, 46, 70);     /* Darker background for overlay */
+    height: 100vh; /* Make the overlay cover the entire viewport height */
+    position: fixed; /* Fixes the position to the screen */
+    top: 0; /* Aligns to the top of the screen */
+    left: 0; /* Aligns to the left of the screen */
+    width: 100%; /* Ensures the overlay covers the full width of the screen */
+    display: none; /* Centers the modal content */
+    z-index: 1000; /* Ensures it's on top of other content */
+    padding-top: 10%;
+}
+#openmenu.active{
+    display: block; /* Centers the modal content */
+}
+#unopen{
+margin-left: auto;
+font-weight:600;
+font-size: 30px;
+color: white;
+margin-right: 30px;
+}
+.mobilemenu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#openmenu img{
+    width: 100%;
+    padding: 10px
+}
+.mobilegroup{
+    margin-top: 20px;
+}
+.mobilelink{
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+
+}
+.mobilelink a{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    color: white;
+    text-transform: capitalize;
+    font-size: 25px;
+}
+
+#mobilebutton{
+    border: none;
+    border-radius: 25px;
+    background-color: #ffffff;
+    color: rgb(34, 31, 61);
+    transition: all ease 0.2s;
+    width: 100%;
+    margin: auto;
+    height: 7vh;
+    margin-top: 20px;
+}
+
+.card-body{
+    background-color:   rgb(41, 46, 70);
+    color: white;
+}
+.card-footer{
+    color: white;
+    border-top: 1px solid white;
+    background-color:   rgb(41, 46, 70);
+}
+.text-body-secondary{
+    color: white !important;
+}
+@media (max-width: 1200px) {
+    .home_box {
+        max-width: 40%;
+        margin: auto;
+        margin-top: 10%;
+        text-align: center;
+    }
+    
+    .home_box button {
+        max-width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        padding: 10px;
+        display: block;
+    
+    }
+    .heading_home{
+        text-align: center;
+    }
+    .inner_section_right{
+        max-width: 95%;
+    }
+    .inner_section_left{
+        max-width: 95%;
+    }
+}
+@media (max-width: 1000px) {
+    .home_box {
+        max-width: 60%;
+    }
+    .inner_section_right{
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+    .text_inside {
+        padding: 25px;
+        width: 100%;
+    }
+    .inner_section_left{
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+    .img_inside {
+        width: 70%;
+    }
+    
+}
+@media (max-width: 900px){
+    .home_box {
+        max-width: 75%;
+    }
+    #wordlinks{
+        display: none;
+    }
+    #menuicon{
+        display: flex;
+    }
+    .Holder img{
+        width:100%;
+    }
+    .logoplace{
+        margin-top: 10px;
+        margin-left: 20px;
+        width: 50%;
+    }
+}
+
+@media (max-width: 750px){
+    .img_inside {
+        width: 90%;
+    }
+}
+
+@media (max-width: 400px){
+.homebutton{
+    margin-bottom: -15px;
+}
+}

@@ -1,0 +1,201 @@
+.bar{
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(41, 46, 70);
+    display: flex;
+}
+.bar img{
+    width: 100%;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    width: 20%;
+}
+
+.name{
+    margin-left: auto;
+    width: fit-content;
+    display: flex;
+    justify-items: right;
+    align-items: center;
+}
+.name a{
+    width:fit-content;
+    margin-right: 20px;
+    margin-left: auto;
+    color: white;
+    font-size: 20px;
+}
+.bodyholder{
+    background-image: url("../images/dashboard.png");
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.JobCard{
+    border-radius: 25px;
+    border: 1px solid rgb(186, 183, 197);
+    transition: all ease 0.3s;
+    background-color: white;
+    padding: 20px;
+    padding-bottom: 0;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 15px;
+}
+.JobCard:hover{
+    transform: scale(1.01); /* Scales the element by 5% */
+    cursor: pointer;
+}
+
+.JobCard small{
+   margin-bottom: -10px;
+
+}
+
+.Jobboard{
+    width: 50%;
+    padding: 20px;
+    margin: auto;
+    overflow-y: auto;
+    background-color: rgb(241, 241, 241);
+    box-shadow: inset 3px 3px 8px rgba(46, 46, 46, 0.2);
+    min-height: 90vh;
+    max-height: 90vh;
+    margin-bottom: 20px;
+}
+.heading123{
+    text-align: center;
+}
+
+#outputform {
+    display: none;
+    padding: 20px;
+    height: 100vh; /* Adjusts based on content */
+    width: 100%; /* Ensure it covers the viewport */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4); /* Adds a translucent overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+/* Form inner container styling */
+#outputforminner {
+    width: 40%;
+    margin: auto;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 40px;
+    background: white; /* Set the form's background to white */
+    display: block;
+    max-height: 80vh;
+    overflow-y: scroll;
+}
+#cancel{
+    border: none;
+    border-radius: 30px;
+    height: 50px;
+    width: 130px;
+    background-color: rgb(161, 29, 36);
+    color: white;
+    transition: all ease 0.3s;
+}
+
+#cancel:hover {
+    background-color: rgb(104, 18, 22);
+}
+
+/* Button styling */
+#submitform{
+    border: none;
+    border-radius: 30px;
+    height: 50px;
+    width: 200px;
+    background-color: rgb(38, 47, 54);
+    color: white;
+    transition: all ease 0.3s;
+}
+
+#submitform:hover {
+    background-color: rgb(25, 31, 36);
+}
+
+#outputform.active{
+    display: flex;
+}
+
+.smaller{
+    margin-bottom: 5px;
+}
+.descbig{
+    margin-top: 15px;
+    max-width: 100%; /* Adjust as needed */
+    margin: 0 auto; /* Center the text block */
+    word-wrap: break-word; /* Ensure long words wrap properly */
+    overflow-wrap: break-word;
+}
+.fw-medium{
+    max-width: 100%; /* Adjust as needed */
+    margin: 0 auto; /* Center the text block */
+    word-wrap: break-word; /* Ensure long words wrap properly */
+    overflow-wrap: break-word;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1300px) {
+    .Jobboard{
+        width: 75%;
+    }
+    #outputforminner{
+        width: 60%;
+    }
+}
+
+@media (max-width: 800px) {
+    .Jobboard{
+        width: 85%;
+    }
+    .logo{
+
+        width: 30%;
+    }
+    #outputforminner{
+        width: 85%;
+        padding: 30px
+    }
+}
+
+@media (max-width: 600px) {
+    .Jobboard{
+        width: 90%;
+        padding: 10px;
+        padding-top: 20px;
+    }
+
+    #cancel{
+        width: 100%;
+    }
+
+    #submitform{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 500px) {
+    .logo{
+
+        width: 45%;
+    }
+    .name a{
+        margin-right: 10px;
+        font-size: 15px;
+    }
+    #outputforminner{
+        width: 95%;
+    }
+}

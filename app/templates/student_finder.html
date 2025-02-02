@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Finder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{{ url_for('static', filename='images/inu_logo_short.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/studen_findercss.css') }}"> <!-- Link to an external CSS file -->
+</head>
+<body>
+    <div>
+        <div class="bar">
+            <div class="logo"><img src="{{ url_for('static', filename='images/inu_logo_long.png') }}" alt="InuConnect" onclick="location.href='/'"></div>
+            <div class="name">
+                <a href="/business_dashboard">Dashboard</a>
+            </div>
+        </div>
+    </div>
+    <div class="bodyholder">
+    <div class="filter_bar">
+        <div class="Uni_bar">
+            <label for="Relocation">Relocation</label>
+            <select class="form-select" aria-label="Default select example" id="Relocation">
+                <option selected>Any</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>     
+        <div class="Course_bar">
+            <label for="University">University</label>
+            <select class="form-select" aria-label="Default select example" id="University">
+                <option value="all">All</option>
+                {% for uni in unis %}
+                <option value="{{ uni }}">{{ uni }}</option>
+                {% endfor %}
+            </select>
+        </div> 
+        <div class="Year_bar">
+            <label for="Year">Year At Uni</label>
+            <select class="form-select" aria-label="Default select example" id="Year">
+                <option selected>Any</option>
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">3rd</option>
+                <option value="4">4th</option>
+            </select>
+            </select>
+        </div> 
+        <div class="Industry_bar">
+            <label for="Year">Industry Preference</label>
+            <select class="form-select" aria-label="Default select example" id="Industry">
+                <option value="all">All</option>
+                {% for work in Industry %}
+                <option value="{{ work }}">{{ work }}</option>
+                {% endfor %}
+            </select>
+        </div> 
+        <div class="Indigenous_bar">
+            <label for="Indigenous">Indigenous or Torres Strait</label>
+            <select class="form-select" aria-label="Default select example" id="Indigenous">
+                <option >Any</option>
+                <option value="Yes">Yes</option>
+            </select>
+        </div> 
+        
+    </div>
+    <div id="test"></div>
+
+<div class="search_list" id="nameList">
+    <li class="Headeritem">
+      <div class="pfp1"></div>
+      <div class="inneritem">Name</div>
+      <div class="inneritem">Course Studied</div>
+      <div class="inneritem">Year at uni</div>
+    </li>
+    {% for student in students %}
+    <li class="listitem" 
+        data-relocation="{{ student.relocation }}" 
+        data-uniname="{{ student.uniname }}" 
+        data-yearatuni="{{ student.year_of_study }}" 
+        data-industry="{% for x in student.industry_preference %}{{ x | lower }},{% endfor %}" 
+        data-ato="{{ student.ato }}" 
+        data-fname="{{ student.fname }}" 
+        data-lname="{{ student.lname }}" 
+        data-degree="{{ student.degree }}" 
+        data-pfp="{{ student.pfpfile }}" 
+        data-email="{{ student.email }}" 
+        data-phone="{{ student.phone }}"
+        data-city_work="{{ student.city_work }}"
+        data-skills="{{ student.skills }}"
+        data-certifications="{{ student.certifications }}"
+        data-linkedin="{{ student.linkedin }}"
+        data-resumefile="{{ student.resumefile }}"
+        data-student_id="{{ student.student_id }}"
+        >
+      <div class="pfp1 left">
+        <img src="{{ url_for('static', filename='images/profilepics/' + student['pfpfile']) }}" alt="Profile Picture">
+      </div>
+      <div class="inneritem"><p>{{ student.fname }} {{ student.lname }}</p></div>
+      <div class="inneritem"><p>{{ student.degree }}</p></div>
+      <div class="inneritem"><p>{{ student.year_of_study }}</p></div>
+    </li>
+  {% endfor %}
+  </div>
+
+  <div id="popupback">
+    <div class="studentprofile">
+         <button id="cancel" onclick="cancel()">X</button>
+         <div class="upper">
+            <div class="left">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="profilepic">   
+            </div>
+            <div class="right">
+                <table>
+                    <tr>
+                        <td><p class="lead"><strong>Kye Jones</strong></p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="lead">uni of bitches</p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="lead">computer science</p></td>
+                    </tr>
+                    <tr>
+                        <td>Email: </td>
+                        <td><p>Kyej2005@gmail.com</p></td>
+                    </tr>
+                    <tr>
+                        <td>Phone: </td>
+                        <td><p>0472 272 127</p></td>
+                    </tr>
+                </table>
+            </div>
+        </div> 
+        <div class="lower">
+            <div class="left1">
+                <p class="lead"><strong>Industry Preferences</strong></p>
+                <p class="lead">Accounting</p>
+                <p class="lead">Accounting</p>
+                <p class="lead">Accounting</p>
+                <p class="lead">Accounting</p>
+                <p class="lead">Accounting</p>
+            </div>
+            <div class="right">
+                <table>
+                    <tr>
+                        <td>Relocation: </td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td>Aboriginal or Tores Strait Islander: </td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td>Prefered City to Work: </td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td>Certifications: </td>
+                        <td><p></p></td>
+                    </tr>
+                    <tr>
+                        <td>LinkedIn: </td>
+                        <td><a href="" target="_blank"></a></td>
+                    </tr>
+                    <tr>
+                        <td>Skills: </td>
+                        <td><p></p></td>
+                    </tr>
+                    <button id="resumebut">View Resume</button>
+                </table>
+                
+            </div>
+        </div> 
+        <button id="savebutton" onclick="">Save Student</button>
+    </div> 
+</div>
+
+<script>
+    // Get the popup container and cancel button
+    const cancelButton = document.getElementById("cancel");
+    const popup = document.getElementById("popupback");
+  
+    // Function to close the popup
+    function cancel() {
+      popup.classList.remove("active");
+      location.reload();
+    }
+  
+    // Function to show the popup with student data
+    function showPopup(student) {
+      // Populate the popup with student data
+      document.getElementById("popupback").classList.add("active");
+      document.querySelector("#popupback .studentprofile img").src = "{{ url_for('static', filename='images/profilepics/') }}" + student.pfpfile;
+      document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(1) td p strong").innerText = `${student.fname} ${student.lname}`;
+      document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(2) td p").innerText = student.uniname;
+      document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(3) td p").innerText = student.degree;
+      document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(4) td p").innerText = student.email;
+      document.querySelector("#popupback .studentprofile .upper .right table tr:nth-child(5) td p").innerText = student.phone;
+  
+      // For industry preferences (assuming multiple preferences)
+      const industryList = student.industry_preference.split(",").map(industry => industry.trim());
+      const industryDiv = document.querySelector("#popupback .studentprofile .lower .left1");
+      industryDiv.innerHTML = "<p class='lead'><strong>Industry Preferences</strong></p>";  // Reset content
+      industryList.forEach(industry => {
+        const p = document.createElement("p");
+        p.classList.add("lead");
+        p.innerText = industry;
+        industryDiv.appendChild(p);
+      });
+  
+      // Populate the rest of the fields in the popup as needed (e.g., relocation, ato)
+      document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(1) td p").innerText = student.relocation;
+      document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(2) td p").innerText = student.ato;
+      document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(3) td p").innerText = student.city_work;
+      document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(4) td p").innerText = student.certifications;
+      document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(5) td a").innerText = student.linkedin;
+      document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(5) td a").href = student.linkedin;
+      document.querySelector("#popupback .studentprofile .lower .right table tr:nth-child(6) td p").innerText = student.skills;
+
+      
+      const resumeButton = document.getElementById("resumebut");
+            resumeButton.onclick = () => {
+                if (student.resumefile === ""){
+                    resumeButton.textContent = "No Saved Resume"
+                }
+                else{
+                    window.open(`/static/pdf/resumes/${student.resumefile}`, "_blank");
+                }}; // Opens the resume in a new tab
+      // Attach event to save button to send data to server
+      document.getElementById("savebutton").onclick = function () {
+        saveStudentData(student);
+        location.reload();
+      };
+    }
+  
+    // Function to save student data by sending it to the server
+    function saveStudentData(student) {
+      fetch('/student_finder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(student),  // Send the student object as JSON
+      })
+    }
+  
+    // Listen for clicks on list items
+    document.querySelectorAll('.listitem').forEach(item => {
+      item.addEventListener("click", () => {
+        const student = {
+          pfpfile: item.dataset.pfp,
+          fname: item.dataset.fname,
+          lname: item.dataset.lname,
+          degree: item.dataset.degree,
+          email: item.dataset.email,
+          phone: item.dataset.phone,
+          relocation: item.dataset.relocation,
+          uniname: item.dataset.uniname,
+          year_of_study: item.dataset.yearatuni,
+          industry_preference: item.dataset.industry,
+          ato: item.dataset.ato,
+          city_work: item.dataset.city_work,
+          certifications: item.dataset.certifications,
+          skills: item.dataset.skills,
+          degree: item.dataset.degree,
+          linkedin: item.dataset.linkedin,
+          resumefile: item.dataset.resumefile,
+          student_id: item.dataset.student_id
+        };
+        showPopup(student);
+      });
+    });
+  </script>
+  
+  
+
+  <script>
+    const relocationFilter = document.getElementById('Relocation');
+    const uniFilter = document.getElementById('University');
+    const yearFilter = document.getElementById('Year');
+    const industryFilter = document.getElementById('Industry');
+    const indigenousFilter = document.getElementById('Indigenous');
+    const itemList = document.getElementById('nameList'); // Corrected id reference
+  
+    function filterItems() {
+    const relocationValue = relocationFilter.value;
+    const uniValue = uniFilter.value.toLowerCase().trim();
+    const yearValue = yearFilter.value;
+    const industryValue = industryFilter.value.toLowerCase().trim();
+    const indigenousValue = indigenousFilter.value;
+
+    Array.from(itemList.children).forEach(item => {
+        if (item.classList.contains("Headeritem")) {
+            item.style.display = "";
+            return;
+        }
+
+        const itemRelocation = item.getAttribute('data-relocation') || "";
+        const itemUniversity = item.getAttribute('data-uniname').toLowerCase().trim() || "";
+        const itemYear = item.getAttribute('data-yearatuni') || "";
+        const itemIndustry = item.getAttribute('data-industry') || "";
+        const itemIndigenous = item.getAttribute('data-ato') || "";
+
+        const matchesRelocation = relocationValue === "Any" || relocationValue === itemRelocation;
+        const matchesUniversity = uniValue === "all" || itemUniversity.includes(uniValue);
+        const matchesYear = yearValue === "Any" || yearValue === itemYear;
+        const matchesIndustry = industryValue === "all" || itemIndustry.includes(industryValue);
+        const matchesIndigenous = indigenousValue === "Any" || indigenousValue === itemIndigenous;
+
+        const shouldDisplay = matchesRelocation && matchesUniversity && matchesYear && matchesIndustry && matchesIndigenous;
+
+        item.style.display = shouldDisplay ? "" : "none";
+    });
+}
+
+
+
+    // Add event listeners to each filter
+    relocationFilter.addEventListener("change", filterItems);
+    uniFilter.addEventListener("change", filterItems);
+    yearFilter.addEventListener("change", filterItems);
+    industryFilter.addEventListener("change", filterItems);
+    indigenousFilter.addEventListener("change", filterItems);
+</script>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{{ url_for('static', filename='images/inu_logo_short.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <style>
+        .row{
+            margin-bottom: 15px;
+        }
+        .imageleftbusiness{
+            background-image: url('https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?cs=srgb&dl=pexels-fauxels-3184338.jpg&fm=jpg'); /* Replace with your image URL */
+
+        }
+    </style> <!-- Link to an external CSS file -->
+</head>
+<body>
+    <div class="page1business">
+        <div class="imageleftbusiness">
+            
+        </div>
+        <div class="loginright">
+            <div class="formoverall">
+                <h1>I&U Connect Business Inquiry</h1>
+                <h4>Lets get you started with I&U Connect business!</h4>
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="bname" class="form-label">Business Name</label>
+                        <input type="text" class="form-control" id="bname" name="bname" required>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                        <label for="fname" class="form-label">Contact First Name</label>
+                          <input type="text" class="form-control" aria-label="First name" id="fname" name="fname" equired>
+                        </div>
+                        <div class="col">
+                            <label for="lname" class="form-label">Contact Last Name</label>
+                          <input type="text" class="form-control"  aria-label="Last name" id="lname" name="lname" required>
+                        </div>
+                      </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Contact Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="exampleInputEmail1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pnumber" class="form-label">Contact Phone Number</label>
+                        <input type="text" class="form-control" id="pnumber" name="pnumber" required>
+                      </div>
+                    <div class="button1group">
+                    <p>Click here to submit and start finding your future<mark>Leaders</mark>!</p>
+                    <button class="login-button" type="submit" id="buttonsubmit" onclick="showAlert()">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="forgotp">
+                <p>Forget your password? Click <u>here</u>.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const button = document.getElementById("buttonsubmit");
+        function showAlert(){
+            alert("Thank you!");
+        }
+
+    </script>
+</body>
+</html>

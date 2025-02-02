@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Searcher</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{{ url_for('static', filename='images/inu_logo_short.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/post_response.css') }}"> <!-- Link to an external CSS file -->
+</head>
+<body>
+    <div>
+        <div class="bar">
+            <div class="logo"><img src="{{ url_for('static', filename='images/inu_logo_long.png') }}" alt="UniConnect"></div>
+            <div class="name">
+                <a href="/business_dashboard">Dashboard</a>
+            </div>
+        </div>
+    </div>
+    <div class="overall">
+        <div class="left">
+            <div class="top">
+                <p class="lead">Responses</p>
+                <button id="editpost">Edit Post</button>
+                <button id="deletepost">Delete Post</button>
+            </div>
+            <div class="scroll">
+                {% for student in students %}
+                <div class="personcard" 
+                data-relocation="{{ student.relocation }}" 
+                data-uni="{{ student.uniname }}" 
+                data-ato="{{ student.ato }}" 
+                data-fname="{{ student.fname }}" 
+                data-lname="{{ student.lname }}" 
+                data-degree="{{ student.degree }}" 
+                data-pfp="{{ student.pfpfile }}" 
+                data-email="{{ student.email }}" 
+                data-ss="{{ student.saved }}"
+                data-city_work="{{ student.city_work }}"
+                data-resumefile="{{ student.resumefile }}"
+                data-response="{{ student.response }}"
+                data-student_id="{{ student.student_id }}">
+                    <div><img src="{{ url_for('static', filename='images/profilepics/' + student['pfpfile']) }}"></div>
+                    <div class="rightcard">
+                        <p class="personname">{{ student.fname }}</p>
+                        <p class="degree"><small>{{ student.degree }}</small></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="right">
+            <p id="getridof" class="">Click a response to show!</p> 
+            <div id="personalpage" class="rightcontent">
+                <div id="goback"><img src="https://static-00.iconduck.com/assets.00/arrow-back-outline-icon-512x448-c4m21vap.png" alt="go back"></div>
+                <div class="upper">
+                    <div class="personal">
+                        <div class="personalcontent">
+                            <h3>Jonathan Bar</h3>
+                            <p class="lead">University of wollongong</p>
+                            <p class="lead">Bacholar of business information systems</p>
+                        </div>
+                    </div>
+                    <div class="pfp">
+                        <img src="https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg">
+                    </div>
+                </div>
+                <div class="lower">
+                    <div class="relocationline">
+                        <div class="lineleft"><p class="wordtitle">Relocation: </p><p class="wordinner">Yes</p></div>
+                        <div class="linemiddle"><p class="wordtitle">Preffered City to work: </p><p class="wordinner">Sydney</p></div>
+                        <div class="lineright"><button id="resumebut">View Resume</button></div>
+                    </div>
+                    <div class="responseouter">
+                        <p class="wordtitle">Response: </p>
+                        <p class="responsewords">
+                            Hello
+                        </p>
+                    </div>
+                    <button id="saved" onclick="savethis()">Save Student</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="editback">
+        <div id="createjob">
+            <div class="titlebar"><h4>Create a Job Post</h4><h4 id="cancel">x</h4></div>
+            <form action="/post_edit" method="POST">
+                <input type="hidden" value="{{ post_id }}" name="post_id">
+                <div class="mb-3">
+                    <label for="jobtitle" class="form-label">Job Title</label>
+                    <input type="text" class="form-control" id="jobtitle" placeholder="Job Title Here" name="jobtitle" value ="{{ jobpost.title }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Industry" class="form-label">Industry</label>
+                    <select class="form-select" id="Industry" name="Industry" required>
+                    <option value = "{{ jobpost.industry }}">{{ jobpost.industry }} (Already Selected)</option>
+                    {% for work in industries %}
+                    <option value="{{ work }}">{{ work }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label for="state" class="form-label">State</label>
+                    <input type="text" class="form-control" placeholder="State here" aria-label="State" id="state" name="state" value ="{{ jobpost.state }}" required>
+                    </div>
+                    <div class="col">
+                        <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" placeholder="City here" aria-label="State" id="city" name="city" value ="{{ jobpost.city }}" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="textarea" required>{{ jobpost.description }}</textarea>
+                </div>
+                <button type="submit">Make Changes</button>
+            </form>
+        </div>
+    </div>
+    <div id="deleteback">
+        <div class="deleteconfirm">
+            <div><p>Are you sure you want to delete your post?</p></div>
+            <div class = "deletebuttons1"> 
+                <button id="deletenow">Delete Post</button>
+                <button id="nocancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <script>
+const nocancel = document.getElementById("nocancel");
+const deleteback = document.getElementById("deleteback");
+
+// Show the popup when the delete button is clicked
+document.getElementById("deletepost").onclick = function () {
+    deleteback.classList.add("active");
+};
+
+// Hide the popup when cancel is clicked
+nocancel.onclick = function () {
+    deleteback.classList.remove("active");
+};
+
+// Perform the deletion and redirect to the business dashboard
+document.getElementById("deletenow").onclick = function () {
+    deletionofpost();
+};
+
+function deletionofpost() {
+    const post = "{{ post_id }}"; // Ensure post_id is injected correctly by Flask
+    const post_id = { post_id: post };
+
+    fetch('/post_delete', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(post_id),  // Send the post_id as JSON
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to delete the post');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Post deleted successfully:', data);
+        // Redirect to the business dashboard after deletion
+        window.location.href = "/business_dashboard";  // Change this URL to match the business dashboard
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+    </script>
+    <script>
+document.querySelectorAll('.personcard').forEach(item => {
+    item.addEventListener("click", () => {
+        const displayed = document.getElementById("getridof");
+        const personalpage = document.getElementById("personalpage");
+        const goback = document.getElementById("goback");
+
+        if (displayed) {
+            displayed.classList.add("gone"); // Hide the placeholder text
+        }
+        if (personalpage){
+            personalpage.classList.add("active");
+        }
+        goback.addEventListener("click", () => {
+            personalpage.classList.remove("active");
+        });
+
+
+        const student = {
+            student_id: item.dataset.student_id,
+            fname: item.dataset.fname,
+            lname: item.dataset.lname,
+            uni: item.dataset.uni,
+            degree: item.dataset.degree,
+            city_work: item.dataset.city_work,
+            response: item.dataset.response,
+            savedstudent: item.dataset.ss,
+            resumefile: item.dataset.resumefile,
+            relocation: item.dataset.relocation === "true" ? "Yes" : "No",
+            pfp: item.dataset.pfp, // Profile picture
+        };
+
+
+        // Populate the right content
+        document.querySelector(".personalcontent h3").textContent = `${student.fname} ${student.lname}`;
+        document.querySelector(".personalcontent .lead:nth-of-type(1)").textContent = student.uni;
+        document.querySelector(".personalcontent .lead:nth-of-type(2)").textContent = student.degree;
+
+        // Update relocation and city
+        document.querySelector(".lineleft .wordinner").textContent = student.relocation;
+        document.querySelector(".linemiddle .wordinner").textContent = student.city_work;
+
+        // Update response
+        document.querySelector(".responsewords").textContent = student.response;
+
+        // Update profile picture
+        const profileImage = document.querySelector(".pfp img");
+        profileImage.src = `/static/images/profilepics/${student.pfp}`;
+        profileImage.alt = `${student.fname}'s profile picture`;
+
+        // Update resume button
+        const resumeButton = document.getElementById("resumebut");
+        resumeButton.onclick = () => {
+            window.open(`/static/pdf/resumes/${student.resumefile}`, "_blank"); // Opens the resume in a new tab
+        };
+
+        if(student.savedstudent === "yes"){
+
+            const button = document.getElementById("saved");
+            button.textContent = "Student Already Saved";
+            button.style = "background-color: rgb(33, 38, 58)"
+            button.disabled = true;
+        }
+        if(student.savedstudent === "no"){
+
+            const button = document.getElementById("saved");
+            button.textContent = "Save Student";
+            button.style = "background-color: rgb(60, 69, 107)"
+            button.disabled = false;
+        }
+
+        document.getElementById("saved").onclick = function () {
+                saveStudent(student);
+                location.reload();
+              };
+    });
+});
+
+            // Function to save student data by sending it to the server
+            function saveStudent(student) {
+              fetch('/student_finder', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(student),  // Send the student object as JSON
+              })
+            }
+    </script>
+<script>
+    const cancelButton = document.getElementById("cancel");
+    const editback = document.getElementById("editback");
+    const editpost = document.getElementById("editpost");
+
+    // Show the popup
+    document.getElementById("editpost").onclick = function () {
+        editback.classList.add("active");
+              };
+
+
+    // Hide the popup (when cancel is clicked)
+    cancelButton.onclick = function () {
+        editback.classList.remove("active");
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+{% block style%}<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}">{% endblock %}
+
+{% block content %}
+<div class="uptop">
+  <h1>Contact I&U Connect</h1>
+</div>
+<div class="overall">
+    <form id="contactform" action="" method="POST">
+        <h2>Fill-out Our Contact</h2>
+        <p>We will be trying our best to make sure we hear from you no matter the message!</p>
+        {% if sent == "yes" %}
+        <p style="color: rgb(2, 156, 2);">Message sent! Thank you for contacting us!</p>
+        {% endif %}
+              <div class="row">
+                <div class="col">
+                <label for="fname" class="form-label">First Name</label>
+                  <input type="text" class="form-control" aria-label="First name" id="fname" name="fname" equired>
+                </div>
+                <div class="col">
+                    <label for="lname" class="form-label">Last Name</label>
+                  <input type="text" class="form-control"  aria-label="Last name" id="lname" name="lname" required>
+                </div>
+              </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Enter message here</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="message"></textarea>
+              </div>
+            <div class="button1group">
+            <p>Click here to submit and we will get back to you <mark>Shortly</mark>!</p>
+            <button class="login-button" type="submit" id="buttonsubmit" onclick="showAlert()">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

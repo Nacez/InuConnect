@@ -1,0 +1,317 @@
+.bar{
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(41, 46, 70);
+    display: flex;
+    color: white;
+}
+.bar img{
+    width: 100%;
+}
+.logo{
+
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.name{
+    width: fit-content;
+    display: flex;
+    justify-items: right;
+    align-items: center; 
+
+    margin-left: auto;
+}
+.name p{
+    width:fit-content;
+    margin-top: 10px;
+    margin-right: 0px;
+}
+.name a{
+    color: white;
+    margin-right: 30px;
+    font-size: 20px;
+    height: fit-content;
+
+}
+
+#jobfinderbut{
+    padding: 15px;
+    margin-left: 75px;
+    border: none;
+    border-radius: 15px;
+    width: 300px;
+    background-color: rgb(30, 51, 70);
+    color: white;
+
+}
+.overall {
+    background-image: url("../images/dashboard.png");
+    background-position: center;
+    background-size: cover;
+    padding: 30px;
+}
+
+
+.dashholder{
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 50px;
+}
+.titleboard{
+    display: flex;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black ;
+}
+.titleboard h1{
+    width: fit-content;
+    border-right: 1px solid black;
+    padding-right: 10px;
+}
+.accountactive{
+   margin-top: 15px;
+   display: flex;
+   padding-left: 10px;
+}
+.statuscolor{
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    margin-right: 5px;
+}
+.editbut{
+    margin-top: 15px;
+    position: right;
+
+    margin-left: auto; /* Pushes the button to the far right */
+}
+.editbut a{
+    text-decoration: none;
+}
+.mainprofile{
+    display: flex;
+    margin-top: 40px;
+    align-items: center;
+}
+.mainprofile img{
+    width: 30%;
+    max-height: 350px;
+     object-fit: cover;
+    overflow: hidden;
+    display: block;
+    padding-right: 20px;
+}
+.nameuni{
+    width: 35%;
+    padding-left: 30px;
+
+}
+.nameuni h4{
+    font-size: 50px;
+}
+.nameuni p{
+    font-size: 25px;
+    font-weight: lighter;
+    margin-top: 30px;
+}
+#resume{
+    width: 270px;
+    height: 70px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgb(41, 46, 70);
+    color: white;
+    transition: all 0.2s ease;
+    margin-top: 15px;
+}
+#resume:hover{
+    background-color: rgb(20, 22, 34) ;
+}
+.relpart{
+    width: 35%;
+    padding-left: 30px;
+
+}
+.relpart p{
+    font-size: 25px;
+    font-weight: lighter;
+    margin-top: 30px;
+}
+.secondpart{
+    margin-top: 30px;
+    padding:30px;
+    display: flex;
+}
+.industry{
+    width: 40%;
+}
+.industry h3{
+    font-size: 35px;
+}
+.industry p{
+    font-size: 20px;
+    font-weight: lighter;
+}
+.personalpart{
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid black;
+}
+.personalpart table{
+    width: 100%;
+}
+.personalpart td{
+    font-size: 20px;
+    font-weight: lighter;
+}
+.lastpart{
+    display: flex;
+    padding:30px;
+}
+.lastpart div{
+    width: 100%;
+    margin-right: 20px;
+}
+.lastpart p{
+    font-size: 20px;
+    font-weight: lighter;
+}
+@media (max-width: 1300px) {
+    /* Styles for screens smaller than or equal to 768px (e.g., tablets, phones) */
+    .dashholder {
+        width: 90%;
+    }
+
+}
+@media (max-width: 1200px) {
+    /* Styles for screens smaller than or equal to 768px (e.g., tablets, phones) */
+    .dashholder {
+        width: 90%;
+    }
+    .mainprofile{
+        flex-wrap: wrap;
+    }
+    .mainprofile{
+        justify-content: center;
+    }
+    .nameuni{
+        width: 50%;
+        text-align: left;
+    }
+    #resume{
+        width: 100%;
+        height: 50px
+    }
+    .nameuni h4{
+     font-size: 200%;   
+    }
+    .relpart{
+        display: flex;
+        width: 100%;
+    }
+    .relpart p{
+        width: 100%;
+    }
+    .secondpart{
+        margin: 0;
+    }
+
+}
+@media (max-width: 862px) {
+    .nameuni{
+        width: 100%;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+    .mainprofile img{
+        margin-bottom: 30px;
+        padding: 0;
+    }
+
+    .relpart{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .relpart p{
+        margin-top: 10px;
+    }  
+    .secondpart{
+        flex-wrap: wrap;
+    }
+    .industry{
+        width: 100%;
+    }
+    .personalpart td{
+        font-size: 15px;
+        font-weight: lighter;
+    }
+    .personalpart tr{
+        border-bottom: 1px dotted grey;
+    }
+    .logo{
+
+        width: 30%;
+    }
+}
+@media (max-width: 700px){
+    .dashholder {
+        width: 100%;
+        padding: 15px;
+        padding-top: 30px;
+    }
+    .lastpart{
+        flex-wrap: wrap;
+    }
+    .titleboard{
+        flex-wrap: wrap;
+    }
+    .titleboard h1{
+        width: 100%;
+        border-right: none;
+    }
+    .mainprofile img{
+        margin-bottom: 30px;
+        padding: 0;
+        width: 50%;
+    }
+    .industry{
+        margin-top: 20px;
+    }
+    .nameuni{
+        padding: 0;
+    }
+    .relpart{
+        padding: 0;
+    }
+    .secondpart{
+        padding: 0;
+    }
+    .lastpart{
+        padding: 0;
+    }
+    .personalpart{
+        padding: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-top: 10px;
+    }
+    .nameuni p{
+        font-size: 26px;
+    }
+}
+@media (max-width: 500px) {
+    .logo{
+
+        width: 45%;
+    }
+    .name a{
+        margin-right: 10px;
+        font-size: 15px;
+    }
+}

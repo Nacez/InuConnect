@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}"> <!-- Link to an external CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+
+</head>
+<body>
+    <div class="bar">
+        <div class="logo"><img src="https://au.eragroup.com/wp-content/uploads/2018/02/logo-placeholder.png" alt="UniConnect"></div>
+        <div class="name">
+            <p><a href="/job_searcher">Go to Job finder!</a></p>
+        </div>
+        <div class="editword">
+            <p><a href="/edit_student">Edit profile</a></p>
+        </div>
+        <div class="logout">
+            <img src="https://static-00.iconduck.com/assets.00/logout-icon-2048x1842-5x6534xl.png" alt="profile" id="showPopup">
+        </div>
+    </div>
+    <div class="overall">
+    <div class="heading12">
+        <h1>Profile Dashboard</h1>
+        {% if records.status == "active" %}
+        <div id="activeornot" style="background-color: rgb(40, 204, 7); border: 1px solid rgb(148, 255, 115)"></div>
+        <p>Acount is Currently {{ records.status }}</p>
+        {% else %}
+        <div id="activeornot" style="background-color: rgb(145, 150, 144);"></div>
+        <p>Acount is Currently {{ records.status }}</p>
+        {% endif %}
+    </div>
+
+    <div class="outer">
+        <div class="inner-left">
+            <img src="{{ url_for('static', filename='images/profilepics/' + records['pfpfile']) }}" alt="Profile Picture">
+
+            <div class="inner_text">
+                <p>Currently studying at:</p>
+                <h4>{{ records.uniname }}</h4>
+            </div>          
+            <div class="inner_text">
+                <p>Year of study:</p>
+                <h4>{{ records.year_of_study }}</h4>
+            </div>    
+            <div class="inner_text">
+                <h4>Industry Preferences</h4>
+                {% for pref in records.industry_preference %}
+                <p><small>{{ pref }}</small></p>
+                {% endfor %}
+            </div> 
+            <div class="inner_text">
+                <h4>Preferred City of work</h4>
+                <p>{{ records.city_work }}</p>
+            </div>  
+        </div>
+        <div class="inner-right">
+            <div class="introduction">
+                <h3>{{ records.fname }} {{ records.lname }}</h3>
+                <p class="lead" style="color: rgb(35, 35, 114)">
+                    {{ records.degree }}
+                </p>
+            </div>
+            <div class="certications">
+                <h4>Certifications</h4>
+                <p class="lead" style="color: rgb(35, 35, 114)">
+                    {{ records.certifications }}
+                </p>
+            </div>
+            <div class="skills">
+                <h4>Skills</h4>
+                <p class="lead" style="color: rgb(35, 35, 114)">
+                    {{ records.skills }}
+                </p>
+            </div>
+            <div class="aboriginal">
+                <h4>Open to relocation:</h4>
+                <p class="lead" style="color: rgb(35, 35, 114)">{{ records.relocation }}</p>
+            </div>
+            <div class="aboriginal">
+                <h4>Aboriginal or Tores Strait Islander:</h4>
+                <p class="lead" style="color: rgb(35, 35, 114)">{{ records.ato }}</p>
+            </div>
+            <div class="personal">
+                <h4>Personal</h4>
+                <table>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ records.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td>{{ records.phone }}</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>{{ records.address }}</td>
+                    </tr>
+                    <tr>
+                        <td>State</td>
+                        <td>{{ records.state }}</td>
+                    </tr>
+                    <tr>
+                        <td>City</td>
+                        <td>{{ records.city }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="farright">
+            <h3>Your last 5 days Profile views</h3>
+            <canvas id="myChart"></canvas> <!-- Canvas for the graph -->
+        </div>
+
+    </div>
+    </div>
+    <div id="logoutpop">
+        <img src="https://static-00.iconduck.com/assets.00/logout-icon-2048x1842-5x6534xl.png" alt="logout">
+        <h4>Are you sure you want to logout?</h4>
+        <p>just a reminder you can log back in at anytime!</p>
+        <div class="logoutbuttons">
+            <div><button id="cancel">Cancel</button></div>
+            <div><button id="logout" onclick="location.href='/'">Logout</button></div>
+        </div>
+    </div>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line', // Graph type: line, bar, pie, etc.
+            data: {
+                labels: ['5', '4', '3', '2', '1', 'Today'], // X-axis labels
+                datasets: [{
+                    label: 'Profile Views',
+                    data: [12, 19, 3, 5, 2, 3], // Y-axis data
+                    borderColor: 'rgba(75, 192, 192, 1)', // Line color
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: false, // Disable responsiveness
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+    const logoutPopup = document.getElementById("logoutpop");
+    const showPopupButton = document.getElementById("showPopup");
+    const cancelButton = document.getElementById("cancel");
+
+    // Function to show the popup
+    showPopupButton.addEventListener("click", () => {
+        logoutPopup.classList.add("active");
+    });
+
+    // Function to hide the popup (when cancel is clicked)
+    cancelButton.addEventListener("click", () => {
+        logoutPopup.classList.remove("active");
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,579 @@
+.bar{
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(41, 46, 70);
+    display: flex;
+    color: white;
+}
+.bar img{
+    width: 100%;
+}
+
+.name{
+    width: fit-content;
+    margin-left:auto;
+    display: flex;
+    justify-items: right;
+    align-items: center; 
+}
+.name p{
+    width:fit-content;
+    margin-top: 10px;
+    margin-right: 30px;
+}
+.logo{
+
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+.name a{
+    color: white;
+    margin-right: 30px;
+    font-size: 20px;
+    height: fit-content;
+
+}
+.left{
+    width: 30%;
+    padding: 30px;
+    border-right: 1px solid grey;
+    height: 85vh;
+    max-height: 85vh;
+}
+.top{
+    display: flex;
+    text-align: center;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+.top p{
+    margin-right: 50px;
+    margin-top: 5px;
+}
+#editpost{
+    width: 100%;
+    margin-right: 20px;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(34, 38, 88);
+    color: white;
+}
+#deletepost{
+    width: 100%;
+    margin-right: 20px;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(122, 45, 58);
+    color: white;
+}
+.scroll{
+    overflow-y: scroll;
+    height: 100%;
+    padding: 10px;
+    padding-top: 20px;
+}
+.personcard{
+    width: 95%;
+    border: 2px solid rgb(162, 161, 163);
+    border-radius: 20px;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: center; /* Vertically center content */
+    padding: 20px;
+    margin-bottom: 30px;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+.personcard:hover{
+    transform: scale(1.015);
+}
+
+.personcard img{
+    width: 70px; /* Ensure the image takes full width of the container */
+        align-items: center; /* Vertically center content */
+    max-height: 70px;
+    object-fit: cover; /* Ensures the image is clipped rather than squished */
+    overflow: hidden; /* Hides any overflowing parts of the image */
+    display: block;
+    margin: 10px;
+    margin-top: 20%;
+    margin-right: 20px;
+}
+.personname{
+    font-size: 25px;
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+.degree{
+    margin-top: 0;
+    font-size: 20px;
+}
+.overall{
+    display: flex;
+}
+.right{
+    width: 70%;
+    height: 85vh;
+    max-height: 85vh;
+    overflow-y: scroll;
+}
+#getridof {
+    display: flex;
+    justify-content: center; /* Centers the text horizontally */
+    align-items: center;    /* Centers the text vertically */
+    color: rgb(184, 184, 184);
+    font-size: 25px;
+    width: 70%;
+    height: 85vh;
+    text-align: center; /* Optional: Ensures multi-line text is centered */
+    position: fixed;
+    background-color: white;
+}
+#getridof.gone{
+    display: none;
+}
+.rightcontent{
+    padding: 25px;
+}
+
+.upper{
+    display: flex;
+    
+}
+.upper img{
+    width: 250px;
+    height: 250px;
+        object-fit: cover; /* Ensures the image is clipped rather than squished */
+        overflow: hidden; /* Hides any overflowing parts of the image */
+        display: block;
+        margin: auto;
+}
+.upper div{
+    width: 100%;
+    justify-content: center; /* Centers the text horizontally */
+    align-items: center;  
+}
+.personal {
+    display: flex;              /* Enables flexbox for the parent container */
+    justify-content: center;    /* Centers the content horizontally */
+    align-items: center;        /* Centers the content vertically */
+
+        /* Adjust height as needed */
+}
+
+.personalcontent {
+    padding: 70px;
+    padding-bottom: 0;
+
+    margin: 0;
+    text-align: left;         /* Ensures text inside is centered */
+}
+.pfp{
+    display: flex;
+    justify-content: center;    /* Centers the content horizontally */
+    align-items: center;   
+}
+
+.personalcontent h3 {
+    font-size: 55px;
+}
+.personalcontent p{
+    font-size: 25px;
+}
+.lower{
+    margin-top: 10px;
+    padding-bottom: 0px;
+    padding: 50px;
+
+}
+.relocationline{
+    display: flex;
+    justify-content: center;    /* Centers the content horizontally */
+    align-items: center;  
+}
+
+.lineleft{
+        display: flex;
+        width: fit-content;
+        justify-content: left;    /* Centers the content horizontally */
+        align-items: left;  
+
+}
+.linemiddle{
+    display: flex;
+    width: 100%;
+    justify-content: center;    /* Centers the content horizontally */
+    align-items: center;  
+
+}
+.lineright{
+    display: flex;
+    width: 100%;
+    justify-content: center;    /* Centers the content horizontally */
+    align-items: right;  
+
+}
+
+.wordtitle{
+    font-size: 30px;
+    margin: 10px;
+    margin-top: 15px;
+}
+.wordinner{
+    margin: 10px;
+    margin-top: 15px;
+    font-size: 25px;
+    font-weight: lighter;
+
+}
+.responseouter{
+    margin-top: 30px;
+
+
+}
+.responsewords{
+    margin: 10px;
+    margin-top: 15px;
+    font-size: 25px;
+    font-weight: lighter;
+    height: 20vh;
+    max-height: 20vh;
+    overflow-y: scroll;
+}
+#saved{
+    width: 100%;
+    height: 7vh;
+    border: none;
+    border-radius: 25px;
+    background-color: rgb(60, 69, 107);
+    color: white;
+    transition: all ease 0.3s;
+}
+#saved:hover{
+    background-color: rgb(33, 38, 58);
+}
+#resumebut{
+    width: 60%;
+    height: 5vh;
+    border: none;
+    border-radius: 25px;
+    border: 3px solid rgb(60, 69, 107);
+    background-color: transparent;
+    color: rgb(60, 69, 107);
+    transition: all ease 0.3s;
+    margin-top: 13px
+}
+#resumebut:hover{
+    background-color: rgb(60, 69, 107);
+    color:white;
+}
+
+
+#editback{
+    display: none;
+    transition: 0.3s ease;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.247);
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#createjob {
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 25px;
+    max-height: fit-content;
+    z-index: 1;
+    background-color: white;
+}
+#editback.active{
+    display: flex;
+}
+
+#createjob button{
+    padding: 15px;
+    border: none;
+    background-color: rgb(24, 26, 39);
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+}
+.titlebar{
+    display: flex;
+}
+#cancel {
+    margin-left: auto; /* Pushes the "x" to the right */
+    cursor: pointer;   /* Optional: Adds a pointer cursor */
+  }
+  #deleteback{
+    display: none;
+    transition: 0.3s ease;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.247);
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  #deleteback.active{
+    display: flex;
+  }
+  .deleteconfirm{
+    width: 20%;
+    display: block;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: none;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+  }
+  .deleteconfirm p{
+    font-size: 25px;
+    font-weight:lighter ;
+  }
+  .deletebuttons1{
+    display: flex;
+  }
+  .deleteconfirm button{
+    width: 100%;
+    border: none;
+    margin-left: 5px;
+    margin-left: 5px;
+    border-radius: 20px;
+    height: 50px;
+  }
+  #deletenow{
+    background-color: rgb(146, 44, 44);
+    color: white;
+  }
+  #nocancel{
+    background-color: rgb(57, 53, 94);
+    color: white;
+  }
+  #goback{
+    width: 50px;
+    margin-left: 10px;
+    height: auto;
+    display: none;
+  }
+  #goback img{
+    width: 20px;
+    height: auto;
+  }
+
+@media(max-width: 1200px) {
+    .wordtitle {
+        font-size: 20px;
+    }
+}
+#personalpage.active{
+    display: block;
+}
+
+@media(max-width: 1000px) {
+    .lineleft, .linemiddle, .lineright {
+        width: 100%;
+        justify-content: left;
+    }
+    .relocationline {
+        flex-direction: column;
+    }
+    .left{
+        width: 40%;
+    }
+    .upper {
+        flex-direction: column-reverse;
+    }
+}
+
+/* General Mobile Styles */
+@media screen and (max-width: 768px) {
+    .logo{
+
+        width: 30%;
+    }
+    #getridof{
+        display: none;
+    }
+    #personalpage{
+        display: none;
+    }
+    .rightcontent{
+        position: fixed; /* Makes it fixed on the page */
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        width: 101%;
+        max-height: 101vh;
+        transform: translate(-50%, -50%); /* Adjust for true centering */
+        z-index: 9999; /* Place it over everything else */
+        background-color: rgb(255, 255, 255);
+        overflow-y: scroll;
+    }
+
+    #goback{
+        display: block;
+    }
+    .left, .right {
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid grey;
+        padding: 10px;
+    }
+
+    .top {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .top p {
+        margin: 10px 0;
+    }
+
+    #editpost, #deletepost {
+        width: 90%; /* Reduce button width */
+        height: 60px; /* Smaller button height */
+        margin: 10px auto;
+    }
+
+    .scroll {
+        height: auto;
+        max-height: 50vh;
+    }
+
+    .personcard {
+        align-items: center; /* Center content */
+        text-align: left;
+        padding: 15px;
+    }
+
+    .personcard img {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .personname {
+        font-size: 20px;
+    }
+
+    .degree {
+        font-size: 16px;
+    }
+
+    .overall {
+        flex-direction: column;
+    }
+
+    .right {
+        overflow-y: visible; /* Remove scroll for better mobile fit */
+    }
+
+    #getridof {
+        width: 90%;
+        height: auto;
+        position: relative;
+        font-size: 20px;
+        padding: 20px;
+    }
+    .upper {
+        flex-direction: column-reverse;
+    }
+
+    .upper img {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 15px;
+    }
+
+    .personalcontent {
+        padding: 20px;
+    }
+
+    .personalcontent h3 {
+        font-size: 30px;
+    }
+
+    .personalcontent p {
+        font-size: 18px;
+    }
+
+    .lower {
+        padding: 20px;
+    }
+
+    .relocationline {
+        flex-direction: column;
+    }
+
+    .lineleft, .linemiddle, .lineright {
+        width: 100%;
+        justify-content: left;
+        text-align: left;
+    }
+
+    .wordtitle {
+        font-size: 20px;
+    }
+
+    .wordinner {
+        font-size: 20px;
+    }
+
+    .responsewords {
+        height: auto;
+        max-height: none;
+    }
+
+    #saved {
+        width: 100%;
+        height: 50px;
+        margin: 10px auto;
+    }
+
+    #resumebut {
+        width: 90%;
+        height: 40px;
+        margin: 10px auto;
+    }
+
+    #editback, #deleteback {
+        padding: 10px;
+    }
+
+    #createjob {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .deleteconfirm {
+        width: 90%;
+    }
+    .responsewords{
+        font-size: 15px;
+    }
+}
+@media (max-width: 500px) {
+    .logo{
+
+        width: 45%;
+    }
+    .name a{
+        margin-right: 10px;
+        font-size: 15px;
+    }
+}

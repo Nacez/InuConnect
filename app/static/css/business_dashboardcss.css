@@ -1,0 +1,630 @@
+.bar{
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(41, 46, 70);
+    display: flex;
+}
+.bar img{  
+    width: 100%;
+}
+
+.name{
+    width: fit-content;
+    display: flex;
+    justify-items: right;
+    align-items: center; 
+    margin-left: auto;
+
+}
+.name p{
+    white-space: nowrap;
+    margin-top: 10px;
+    margin-right: 30px;
+    color: white;
+
+}
+.logo{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.overall{
+    background-image: url("images/dashboard.png");
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    
+}
+
+.bdetails{
+    width: 90%;
+    padding: 25PX;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 20px;
+}
+.bdetails table{
+    width: 100%;
+}
+.bdetails td{
+    width: 50%;
+    vertical-align: text-top;
+}
+
+.bcurrent{
+    width: 90%;
+    padding: 25PX;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 20px;
+    height: 50vh;;
+    max-height: 50vh;
+    overflow-y: auto;
+
+}
+.bcurrent li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid grey;
+    text-align: center;
+}
+.bcurrent .innerp{
+    width: 100%;
+
+}
+.bcurrent .innertitle{
+    width: 100%;
+    color: white;
+}
+#currenttitle{
+    padding: 10px;
+    background-color: rgb(33, 41, 51);
+    border: none;
+}
+.rightside{
+    width: 50%;
+    
+}
+.saved{
+    width: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    list-style: none;
+    padding: 20px;
+    overflow-y: auto;
+    margin-top: 20px;
+    height: 78vh;
+    background-color: white;
+}
+#savedtitle{
+    padding: 10px;
+    background-color: rgb(33, 41, 51);
+    border: none;
+    color: white;
+}
+.saved li{
+    list-style: none;
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid grey;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+.saved .innertitle{
+    width: 100%;
+    color: white;
+}
+.saved .innerp{
+    width: 100%;
+
+}
+.innerp1{
+    width: 100%;
+}
+
+.rightside button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 20px;
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Optional: Vertically center the content */
+    margin-top: 20;
+    border-color: rgb(24, 26, 39);
+    transition: all ease 0.3s;
+}
+
+.rightside button {
+    display: flex;
+    align-items: center; /* Aligns the text and image vertically */
+    padding: 10px;
+    border-radius: 20px;
+    background-color: transparent;
+    border: 2px solid #000; /* Optional: for visibility */
+}
+
+.rightside button img {
+    max-width: 20px;
+    margin-left: 10px; /* Adds space between the image and any other content */
+    transition: filter 0.3s ease; /* Smooth transition for the filter */
+}
+
+/* When hovering over the button, apply the invert filter to the image */
+.rightside button:hover img {
+    filter: invert(100%);
+}
+
+.rightside button:hover {
+    background-color: rgb(24, 26, 39);
+    color: white;
+}
+.middleside{
+    margin-right: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 85vh;
+    padding: 25PX;
+    background-color: white;
+    width: 50%;
+}
+.middleside button{
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: rgb(24, 26, 39);
+    color: white;
+}
+.Joblist{
+    display: block;
+    overflow-y: auto;
+    background-color: rgb(241, 241, 241);
+    box-shadow: inset 3px 3px 8px rgba(46, 46, 46, 0.2);
+    margin-top: 15px;
+    height: 67vh;
+    padding: 20px;
+}
+.JobCard{
+    border-radius: 25px;
+    border: 1px solid rgb(186, 183, 197);
+    transition: all ease 0.3s;
+    background-color: white;
+    padding: 20px;
+    padding-bottom: 0;
+    margin-bottom: 15px;
+}
+.JobCard:hover{
+    transform: scale(1.01); /* Scales the element by 5% */
+    cursor: pointer;
+}
+
+.JobCard small{
+   margin-bottom: -10px;
+
+}
+#createjob{
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 25px;
+    max-height: fit-content;
+    margin: auto;
+    display: block;
+    position: absolute;
+    transition: 0.3s ease;
+    top: 50%; /* Position from the top */
+    left: 50%; /* Position from the left */
+    transform: translate(-50%, -50%); /* Move it back by half its width and height */
+    z-index: 1;
+    background-color: white;
+}
+
+
+#createjob button{
+    padding: 15px;
+    border: none;
+    background-color: rgb(24, 26, 39);
+    color: white;
+    border-radius: 10px;
+    width: 100%;
+}
+.titlebar{
+    display: flex;
+}
+#cancel {
+    margin-left: auto; /* Pushes the "x" to the right */
+    cursor: pointer;   /* Optional: Adds a pointer cursor */
+  }
+
+  .studentprofile img {
+    width: 80%; /* Ensure the image takes full width of the container */
+/* Optional: limit image width */
+    max-height: 250px;
+    object-fit: cover; /* Ensures the image is clipped rather than squished */
+    overflow: hidden; /* Hides any overflowing parts of the image */
+    display: block;
+}
+
+.upper {
+    display: flex;
+    flex-wrap: wrap; /* Makes it responsive */
+    margin-bottom: 20px;
+    height: 300px;
+}
+
+.lower {
+    display: flex;
+    flex-wrap: wrap; /* Makes it responsive */
+    margin-bottom: 20px;
+
+}
+
+.left {
+    width: 45%;
+    padding: 10px;
+    text-align: left; /* Center the profile picture */
+
+}
+.right td:only-child {
+    width: 100%; /* Ensures rows with only one td take up the full width */
+}
+
+
+.right {
+    width: 55%;
+    padding: 10px;
+}
+
+.right table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse borders for cleaner look */
+
+}
+.right table tr td:only-child {
+    width: auto; /* Prevents single `<td>` rows from spanning the full width */
+    text-align: left; /* Ensures text alignment is consistent */
+}
+
+.right td {
+    padding: 5px;
+
+}
+
+.right tr {
+    margin-bottom: 20px; /* Space between rows */
+}
+#popupback {
+    background-color: rgba(0, 0, 0, 0.5); /* Darker background for overlay */
+    height: 100vh; /* Make the overlay cover the entire viewport height */
+    position: fixed; /* Fixes the position to the screen */
+    top: 0; /* Aligns to the top of the screen */
+    left: 0; /* Aligns to the left of the screen */
+    width: 100%; /* Ensures the overlay covers the full width of the screen */
+    display: flex; /* Centers the modal content */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    z-index: 1000; /* Ensures it's on top of other content */
+    display: none;
+}
+#popupback.active{
+    display: block;
+}
+
+#createjobback{
+        background-color: rgba(0, 0, 0, 0.5); /* Darker background for overlay */
+        height: 100vh; /* Make the overlay cover the entire viewport height */
+        position: fixed; /* Fixes the position to the screen */
+        top: 0; /* Aligns to the top of the screen */
+        left: 0; /* Aligns to the left of the screen */
+        width: 100%; /* Ensures the overlay covers the full width of the screen */
+        display: flex; /* Centers the modal content */
+        justify-content: center; /* Centers horizontally */
+        align-items: center; /* Centers vertically */
+        z-index: 1000; /* Ensures it's on top of other content */
+        display: none;
+}
+#createjobback.active{
+    display: block;
+}
+
+#popupback1 {
+    background-color: rgba(0, 0, 0, 0.5); /* Darker background for overlay */
+    height: 100vh; /* Make the overlay cover the entire viewport height */
+    position: fixed; /* Fixes the position to the screen */
+    top: 0; /* Aligns to the top of the screen */
+    left: 0; /* Aligns to the left of the screen */
+    width: 100%; /* Ensures the overlay covers the full width of the screen */
+    display: flex; /* Centers the modal content */
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    z-index: 1000; /* Ensures it's on top of other content */
+    display: none;
+}
+#popupback1.active{
+    display: block;
+}
+.studentprofile {
+    width: 45%;
+    background-color: white;
+    margin: auto;
+    padding: 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 50px; /* Adjust for centering */
+    position: relative;
+}
+
+#cancel1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(24, 17, 44);
+    cursor: pointer;
+    text-align: right;
+    margin-bottom: -5px;
+    background-color: transparent;
+    border: none;
+    float: right;
+}
+#cancel2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(24, 17, 44);
+    cursor: pointer;
+    text-align: right;
+    margin-bottom: -5px;
+    background-color: transparent;
+    border: none;
+    float: right;
+}
+.bigdescrip{
+    margin-top: 15px;
+    max-width: 100%; /* Adjust as needed */
+    margin-bottom: 10px; /* Center the text block */
+    word-wrap: break-word; /* Ensure long words wrap properly */
+    overflow-wrap: break-word;
+}
+
+#unsavebutton {
+    width: 100%;
+    background-color: rgb(138, 33, 59);
+    transition: background 0.2s ease;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    margin: 5px;
+}
+#uncurrentbutton{
+    width: 100%;
+    background-color: rgb(138, 33, 59);
+    transition: background 0.2s ease;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    margin: 5px;
+}
+
+#unsavebutton:hover {
+    background-color: rgb(99, 23, 36);
+}
+#currentbutton {
+    width: 100%;
+    background-color: rgb(36, 40, 70);
+    transition: background 0.2s ease;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    margin: 5px;
+}
+.buttonspop{
+    display: flex;
+}
+
+#currentbutton:hover {
+    background-color: rgb(25, 28, 49);
+}
+
+a{
+    color: black;
+    float: right;
+    margin-right: 50px;
+    margin-top: 10px;
+}
+.clickli{
+    cursor: pointer;
+    transition: all ease 0.3s;
+}
+.clickli:hover{
+    transform: scale(1.01);
+}
+.secondclick{
+    cursor: pointer;
+}
+.home{
+    margin: 0;
+}
+.home img{
+    width: 30px;
+    height: 30px;
+}
+#resumebut{
+    width: 100%;
+    height: 5vh;
+    border: none;
+    border-radius: 25px;
+    border: 3px solid rgb(60, 69, 107);
+    background-color: transparent;
+    color: rgb(60, 69, 107);
+    transition: all ease 0.3s;
+    margin-top: 13px
+}
+#resumebut:hover{
+    background-color: rgb(60, 69, 107);
+    color:white;
+}
+#resumebut1{
+    width: 100%;
+    height: 5vh;
+    border: none;
+    border-radius: 25px;
+    border: 3px solid rgb(60, 69, 107);
+    background-color: transparent;
+    color: rgb(60, 69, 107);
+    transition: all ease 0.3s;
+    margin-top: 13px
+}
+#resumebut1:hover{
+    background-color: rgb(60, 69, 107);
+    color:white;
+}
+.left1 {
+    width: 45%;
+    padding: 10px;
+    text-align: left; /* Center the profile picture */
+}
+
+
+@media (max-width: 1500px) {
+    .studentprofile {
+        width: 60%;
+        max-height: 90vh;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 1250px) {
+    .overall {
+        flex-wrap: wrap;
+    }
+    .overall div {
+        width: 100%;
+    }
+    .middleside {
+        margin: 40px 0 60px 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    .filter_bar,
+    .search_list {
+        width: 90%;
+    }
+    .studentprofile {
+        width: 75%;
+    }
+    .upper {
+        display: flex;
+        width: 100%;
+    }
+    .right td,
+    .right td p {
+        width: 100%;
+    }
+    #resumebut {
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    #createjob {
+        width: 75%;
+    }
+}
+
+@media (max-width: 785px) {
+    .studentprofile {
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: scroll;
+    }
+    .upper {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: fit-content;
+    }
+    .left {
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+    }
+    .studentprofile img {
+        width: 50%;
+    }
+    .right,
+    .left1 {
+        width: 100%;
+    }
+    .filter_bar {
+        width: 95%;
+        flex-direction: column;
+        margin: 20px auto;
+    }
+    .search_list {
+        width: 95%;
+        margin-top: 0;
+    }
+    .Uni_bar,
+    .Course_bar,
+    .Year_bar,
+    .Industry_bar,
+    .Indigenous_bar {
+        width: 100%;
+        padding: 10px;
+        text-align: left;
+    }
+    .search_list p,
+    .inneritem {
+        font-size: 13px;
+        padding: 10px;
+    }
+    .listitem .pfp1,
+    .Headeritem .pfp1 {
+        width: 60px;
+        height: 60px;
+        padding-right: 60px;
+    }
+    .Headeritem div {
+        width: 100%;
+    }
+
+    .logo {
+        width: 40%;
+    }
+    .name {
+        margin-left: auto;
+    }
+    .home{display: none;}
+}
+
+@media (max-width: 570px) {
+    .overall {
+        padding: 10px;
+    }
+    .JobCard p {
+        font-size: 13px;
+    }
+    .innerp {
+        font-size: 12px;
+    }
+    #createjob {
+        width: 85%;
+    }
+    .name p{
+        font-size: 15px;
+        margin-right: 10px;
+    }
+    .logo{
+        width: 45%;
+    }
+}
